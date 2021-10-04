@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Kismet/GameplayStatics.h"
+#include "Item.h"
 #include "Projet2Character.generated.h"
 
 UCLASS(config=Game)
@@ -21,6 +23,15 @@ class AProjet2Character : public ACharacter
 public:
 	AProjet2Character();
 
+	bool bHoldingItem;
+	bool bInspecting;
+	FRotator LastRotation;
+
+	FVector Start;
+	FVector ForwardVector;
+	FVector End;
+
+	FHitResult Hit;
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseTurnRate;
@@ -28,11 +39,8 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
-
+	
 protected:
-
-	/** Resets HMD orientation in VR. */
-	void OnResetVR();
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
@@ -52,11 +60,9 @@ protected:
 	 */
 	void LookUpAtRate(float Rate);
 
-	/** Handler for when a touch input begins. */
-	void TouchStarted(ETouchIndex::Type FingerIndex, FVector Location);
-
-	/** Handler for when a touch input stops. */
-	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
+	/** Pick and Drop Item **/
+	void PickItem();
+	void DropItem();
 
 protected:
 	// APawn interface
@@ -68,5 +74,8 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 };
 

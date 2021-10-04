@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "Projet2Character.h"
+
+#include "DrawDebugHelpers.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -8,6 +10,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+
 
 //////////////////////////////////////////////////////////////////////////
 // AProjet2Character
@@ -57,6 +60,9 @@ void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("Pick", IE_Pressed, this, &AProjet2Character::PickItem);
+	PlayerInputComponent->BindAction("Pick", IE_Released, this, &AProjet2Character::DropItem);
+
 	PlayerInputComponent->BindAxis("MoveForward", this, &AProjet2Character::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AProjet2Character::MoveRight);
 
@@ -68,35 +74,47 @@ void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AProjet2Character::LookUpAtRate);
 
-	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &AProjet2Character::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &AProjet2Character::TouchStopped);
-
-	// VR headset functionality
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AProjet2Character::OnResetVR);
 }
 
-
-void AProjet2Character::OnResetVR()
+void AProjet2Character::Tick(float DeltaTime)
 {
-	// If Projet2 is added to a project via 'Add Feature' in the Unreal Editor the dependency on HeadMountedDisplay in Projet2.Build.cs is not automatically propagated
-	// and a linker error will result.
-	// You will need to either:
-	//		Add "HeadMountedDisplay" to [YourProject].Build.cs PublicDependencyModuleNames in order to build successfully (appropriate if supporting VR).
-	// or:
-	//		Comment or delete the call to ResetOrientationAndPosition below (appropriate if not supporting VR)
-	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
+	Super::Tick(DeltaTime);
+
+	Start = GetCapsuleComponent()->GetComponentLocation();
+	ForwardVector = GetCapsuleComponent()->GetForwardVector();
+	End = ((ForwardVector * 200.f) + Start);
+
+	DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
+	
 }
 
-void AProjet2Character::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
+void AProjet2Character::PickItem()
 {
-		Jump();
+	if(bHoldingItem)
+	{
+		LastRotation = GetControlRotation();
+	}
+	else 
+	{
+		bInspecting = true;
+	}
 }
 
-void AProjet2Character::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
+void AProjet2Character::DropItem()
 {
-		StopJumping();
+	if (bInspecting && bHoldingItem) 
+	{
+		GetController()->SetControlRotation(LastRotation);
+		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 50;
+		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = 50;
+	}
+	else 
+	{
+		bInspecting = false;
+	}
 }
+
+
 
 void AProjet2Character::TurnAtRate(float Rate)
 {
@@ -138,3 +156,4 @@ void AProjet2Character::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 	}
 }
+
