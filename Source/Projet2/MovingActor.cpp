@@ -31,7 +31,7 @@ void AMovingActor::MoveTo(float DeltaTime, AActor* Target)
 	SetActorRotation(FRotator(0,degree,0));
 	FVector VMove = FVector(Direction.X, Direction.Y, 0.0f);
 	SetActorLocation(dirEnemy + VMove * DeltaTime * 400,true);
-	if(	GetDistanceTo(Target) <= 100)
+	if(	GetDistanceTo(Target) <= 100) //Magic number a modifier
 	{
 		int randInt = FMath::RandRange(0,NbTarget-1);
 		MoveToTarget = TargetActors[randInt];

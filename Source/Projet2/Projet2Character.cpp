@@ -2,8 +2,6 @@
 
 #include "Projet2Character.h"
 
-#include "DrawDebugHelpers.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -45,9 +43,11 @@ AProjet2Character::AProjet2Character()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
-
+	
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
+	bIsHoldingItem = false;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -79,42 +79,26 @@ void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerI
 void AProjet2Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	Start = GetCapsuleComponent()->GetComponentLocation();
-	ForwardVector = GetCapsuleComponent()->GetForwardVector();
-	End = ((ForwardVector * 200.f) + Start);
-
-	//DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
 	
 }
 
 void AProjet2Character::PickItem()
 {
-	if(bHoldingItem)
+	if(currentItem != nullptr)
 	{
-		LastRotation = GetControlRotation();
-	}
-	else 
-	{
-		bInspecting = true;
+		bIsHoldingItem = true;
+		currentItem->PickItem();
 	}
 }
 
 void AProjet2Character::DropItem()
 {
-	if (bInspecting && bHoldingItem) 
+	if(currentItem != nullptr)
 	{
-		GetController()->SetControlRotation(LastRotation);
-		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMax = 50;
-		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->ViewPitchMin = 50;
-	}
-	else 
-	{
-		bInspecting = false;
+		bIsHoldingItem = false;
+		currentItem->PickItem();
 	}
 }
-
-
 
 void AProjet2Character::TurnAtRate(float Rate)
 {
@@ -130,6 +114,10 @@ void AProjet2Character::LookUpAtRate(float Rate)
 
 void AProjet2Character::MoveForward(float Value)
 {
+	if(bIsHoldingItem)
+	{
+		Value = Value/2;
+	}
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is forward
@@ -144,6 +132,10 @@ void AProjet2Character::MoveForward(float Value)
 
 void AProjet2Character::MoveRight(float Value)
 {
+	if(bIsHoldingItem)
+	{
+		Value = Value/2;
+	}
 	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{
 		// find out which way is right

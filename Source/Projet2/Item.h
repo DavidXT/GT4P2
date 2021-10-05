@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/CapsuleComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
@@ -19,18 +20,22 @@ class PROJET2_API AItem : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AItem();
-	bool bCanBePick;
+	UPROPERTY(VisibleAnywhere)
+	bool bHolding;
+	UPROPERTY(VisibleAnywhere)
+	bool bGravity;
+	
 
 protected:
-		
-	UPROPERTY(VisibleAnywhere, Category = Mesh)
-	USceneComponent* SceneComponent;
-	
-	UPROPERTY(VisibleAnywhere, Category = Collider)
+
+	UPROPERTY(EditAnywhere)
 	USphereComponent* Collider;
 	
 	UPROPERTY(VisibleAnywhere, Category = Mesh)
 	UStaticMeshComponent* Mesh;
+
+	UPROPERTY(VisibleAnywhere)
+	FVector TargetPosition;
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -45,6 +50,7 @@ public:
 	
 	UFUNCTION()
 		void PickItem();
+	
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
