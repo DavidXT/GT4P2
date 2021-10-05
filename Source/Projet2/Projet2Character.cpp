@@ -84,7 +84,7 @@ void AProjet2Character::Tick(float DeltaTime)
 	ForwardVector = GetCapsuleComponent()->GetForwardVector();
 	End = ((ForwardVector * 200.f) + Start);
 
-	DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
+	//DrawDebugLine(GetWorld(), Start, End, FColor::Green, false, 1, 0, 1);
 	
 }
 
