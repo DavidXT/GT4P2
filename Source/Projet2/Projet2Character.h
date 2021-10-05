@@ -7,6 +7,21 @@
 #include "Item.h"
 #include "Projet2Character.generated.h"
 
+USTRUCT()
+struct FZoomData
+{
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditDefaultsOnly, Category = Config)
+		float MinCameraLen;
+
+	UPROPERTY(EditDefaultsOnly, Category = Config)
+		float MaxCameraLen;
+
+	UPROPERTY(EditDefaultsOnly, Category = Config)
+		float ZoomStepLen;
+};
+
 UCLASS(config=Game)
 class AProjet2Character : public ACharacter
 {
@@ -19,6 +34,9 @@ class AProjet2Character : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
+	UPROPERTY(EditDefaultsOnly, Category = Config)
+	FZoomData ZoomConfig;
 
 public:
 	AProjet2Character();
@@ -62,6 +80,12 @@ protected:
 	void PickItem();
 	UFUNCTION()
 	void DropItem();
+
+	UFUNCTION(BlueprintCallable, Category = Camera)
+	void ZoomIn();
+
+	UFUNCTION(BlueprintCallable, Category = Camera)
+	void ZoomOut();
 
 protected:
 	// APawn interface
