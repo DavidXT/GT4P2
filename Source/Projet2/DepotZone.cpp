@@ -29,7 +29,7 @@ void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 	{
 		GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("Overlap Burger!"));
 		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
-		MyGameState->AddScore(1);
+		//MyGameState->AddScore(1);
 		OtherActor->Destroy();
 	}
 }
