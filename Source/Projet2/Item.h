@@ -19,7 +19,14 @@ class PROJET2_API AItem : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AItem();
+	UPROPERTY(VisibleAnywhere)
 	bool bCanBePick;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bHolding;
+	UPROPERTY(VisibleAnywhere)
+	bool bGravity;
+	
 
 protected:
 		
@@ -31,6 +38,9 @@ protected:
 	
 	UPROPERTY(VisibleAnywhere, Category = Mesh)
 	UStaticMeshComponent* Mesh;
+
+	UPROPERTY(VisibleAnywhere)
+	FVector TargetPosition;
 	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -45,6 +55,7 @@ public:
 	
 	UFUNCTION()
 		void PickItem();
+	
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

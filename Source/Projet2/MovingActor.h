@@ -24,7 +24,7 @@ class PROJET2_API AMovingActor : public AActor
 	UPROPERTY(VisibleAnywhere)
 	int NbTarget;
 	
-	UPROPERTY(EditAnywhere, Category=Camera)
+	UPROPERTY(EditAnywhere, Category=Target)
 	TArray<AActor*> TargetActors;
 
 	protected:

@@ -3,6 +3,8 @@
 
 #include "Item.h"
 
+#include "Projet2Character.h"
+
 // Sets default values
 AItem::AItem()
 {
@@ -16,7 +18,10 @@ AItem::AItem()
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Mesh"));
 	Mesh->SetupAttachment(Collider);
-
+	
+	
+	bHolding = false;
+	bGravity = true;
 
 }
 
@@ -31,27 +36,41 @@ void AItem::BeginPlay()
 void AItem::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	bCanBePick = true;
-	PickItem();
+	if(OtherActor->IsA(AProjet2Character::StaticClass()))
+	{
+		((AProjet2Character*)OtherActor)->currentItem = this;
+	}
 }
 
 void AItem::OnEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex)
 {
-	bCanBePick = false;
-	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("Can't be picked!"));
+	if(OtherActor->IsA(AProjet2Character::StaticClass()))
+	{
+		((AProjet2Character*)OtherActor)->currentItem = nullptr;
+	}
 }
 
 void AItem::PickItem()
 {
-	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("Item picked!"));
+	bHolding = !bHolding;
+	bGravity = !bGravity;
+	Mesh->SetEnableGravity(bGravity);
+	Mesh->SetSimulatePhysics(bHolding ? false : true);
+	Mesh->SetCollisionEnabled(bHolding ? ECollisionEnabled::NoCollision : ECollisionEnabled::QueryAndPhysics);
 }
+
 
 
 // Called every frame
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	TargetPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
+	if(bHolding==true)
+	{
+		SetActorLocationAndRotation(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation(),GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorRotation());
+	}
+	
 }
 

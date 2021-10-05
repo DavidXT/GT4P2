@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Kismet/GameplayStatics.h"
 #include "Item.h"
 #include "Projet2Character.generated.h"
 
@@ -20,18 +19,13 @@ class AProjet2Character : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
 public:
 	AProjet2Character();
-
-	bool bHoldingItem;
-	bool bInspecting;
-	FRotator LastRotation;
-
-	FVector Start;
-	FVector ForwardVector;
-	FVector End;
-
-	FHitResult Hit;
+	
+	UPROPERTY(VisibleAnywhere)
+	class AItem* currentItem;
+	
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseTurnRate;
@@ -61,7 +55,9 @@ protected:
 	void LookUpAtRate(float Rate);
 
 	/** Pick and Drop Item **/
+	UFUNCTION()
 	void PickItem();
+	UFUNCTION()
 	void DropItem();
 
 protected:
