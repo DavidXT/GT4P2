@@ -46,6 +46,8 @@ AProjet2Character::AProjet2Character()
 	
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
+	bIsHoldingItem = false;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -84,6 +86,7 @@ void AProjet2Character::PickItem()
 {
 	if(currentItem != nullptr)
 	{
+		bIsHoldingItem = true;
 		currentItem->PickItem();
 	}
 }
@@ -92,6 +95,7 @@ void AProjet2Character::DropItem()
 {
 	if(currentItem != nullptr)
 	{
+		bIsHoldingItem = false;
 		currentItem->PickItem();
 	}
 }
@@ -110,6 +114,10 @@ void AProjet2Character::LookUpAtRate(float Rate)
 
 void AProjet2Character::MoveForward(float Value)
 {
+	if(bIsHoldingItem)
+	{
+		Value = Value/2;
+	}
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is forward
@@ -124,6 +132,10 @@ void AProjet2Character::MoveForward(float Value)
 
 void AProjet2Character::MoveRight(float Value)
 {
+	if(bIsHoldingItem)
+	{
+		Value = Value/2;
+	}
 	if ( (Controller != nullptr) && (Value != 0.0f) )
 	{
 		// find out which way is right

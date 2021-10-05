@@ -25,6 +25,9 @@ public:
 	
 	UPROPERTY(VisibleAnywhere)
 	class AItem* currentItem;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bIsHoldingItem;
 	
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
