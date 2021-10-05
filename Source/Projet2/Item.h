@@ -9,6 +9,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/SceneComponent.h"
+#include "GameFramework/PlayerController.h"
+#include "Projet2Character.h"
 
 #include "Item.generated.h"
 

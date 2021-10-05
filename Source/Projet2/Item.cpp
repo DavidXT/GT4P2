@@ -3,7 +3,8 @@
 
 #include "Item.h"
 
-#include "Projet2Character.h"
+
+
 
 // Sets default values
 AItem::AItem()
