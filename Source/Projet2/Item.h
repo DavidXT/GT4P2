@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/CapsuleComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
@@ -20,20 +21,14 @@ public:
 	// Sets default values for this actor's properties
 	AItem();
 	UPROPERTY(VisibleAnywhere)
-	bool bCanBePick;
-
-	UPROPERTY(VisibleAnywhere)
 	bool bHolding;
 	UPROPERTY(VisibleAnywhere)
 	bool bGravity;
 	
 
 protected:
-		
-	UPROPERTY(VisibleAnywhere, Category = Mesh)
-	USceneComponent* SceneComponent;
-	
-	UPROPERTY(VisibleAnywhere, Category = Collider)
+
+	UPROPERTY(EditAnywhere)
 	USphereComponent* Collider;
 	
 	UPROPERTY(VisibleAnywhere, Category = Mesh)

@@ -84,7 +84,6 @@ void AProjet2Character::PickItem()
 {
 	if(currentItem != nullptr)
 	{
-		GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("Overlap!"));
 		currentItem->PickItem();
 	}
 }
@@ -93,7 +92,6 @@ void AProjet2Character::DropItem()
 {
 	if(currentItem != nullptr)
 	{
-		GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("Overlap!"));
 		currentItem->PickItem();
 	}
 }
