@@ -81,7 +81,6 @@ void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerI
 void AProjet2Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
 }
 
 void AProjet2Character::PickItem()

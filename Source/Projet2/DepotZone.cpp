@@ -3,8 +3,6 @@
 
 #include "DepotZone.h"
 
-#include "MyGameState.h"
-
 // Sets default values
 ADepotZone::ADepotZone()
 {

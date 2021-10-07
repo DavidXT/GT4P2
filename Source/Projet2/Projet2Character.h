@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Item.h"
+#include "MyUserWidget.h"
 #include "Projet2Character.generated.h"
 
 USTRUCT()
@@ -38,9 +39,14 @@ class AProjet2Character : public ACharacter
 	UPROPERTY(EditDefaultsOnly, Category = Config)
 	FZoomData ZoomConfig;
 
+
+
 public:
 	AProjet2Character();
-	
+
+	UPROPERTY(VisibleAnywhere)
+	class UMyUserWidget* currentWidget;
+
 	UPROPERTY(VisibleAnywhere)
 	class AItem* currentItem;
 

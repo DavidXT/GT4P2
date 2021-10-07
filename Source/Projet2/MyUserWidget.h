@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/ProgressBar.h"
 #include "MyGameState.h"
+#include "Layout/Geometry.h"
 #include "MyUserWidget.generated.h"
 
 /**
@@ -19,11 +20,13 @@ class PROJET2_API UMyUserWidget : public UUserWidget
 public:
 	virtual bool Initialize();
 
+	UPROPERTY(VisibleAnywhere)
+		float FoodBarPercent;
 
 	UPROPERTY(meta = (BindWidget))
 	class UProgressBar* FoodBar;
 
 	UFUNCTION()
-		void UpdateFoodBar();
+	void UpdateFoodBar(float NewPercent);
 	
 };
