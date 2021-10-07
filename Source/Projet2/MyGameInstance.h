@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-
+#include "MyUserWidget.h"
 #include "MyGameInstance.generated.h"
 
 /**
@@ -22,6 +22,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ShowWidget();
 
+	UFUNCTION(BlueprintCallable)
+	void UpdateFoodBar(float NewPercent);
+
+	UMyUserWidget* MyUserWidget; 
+
 private:
-	TSubclassOf<class UUserWidget> MyWidget;
+	TSubclassOf<class UMyUserWidget> MyWidget;
 };

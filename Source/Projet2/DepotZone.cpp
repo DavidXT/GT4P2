@@ -18,6 +18,7 @@ void ADepotZone::BeginPlay()
 {
 	Super::BeginPlay();
 	Collider->OnComponentBeginOverlap.AddDynamic(this, &ADepotZone::OnBeginOverlap);
+	MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 }
 
 void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
@@ -29,6 +30,8 @@ void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
 		if (MyGameState != NULL) {
 			MyGameState->AddScore(1);
+			UpdateFoodPercent = MyGameState->GetScore()/2.0f;
+			MyGameInstance->UpdateFoodBar(UpdateFoodPercent);
 		}
 		OtherActor->Destroy();
 	}

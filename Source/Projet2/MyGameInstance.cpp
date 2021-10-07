@@ -3,10 +3,11 @@
 
 #include "MyGameInstance.h"
 #include "Blueprint/UserWidget.h"
+
 #include "UObject/ConstructorHelpers.h"
 
 UMyGameInstance::UMyGameInstance(const FObjectInitializer& ObjectInitializer) {
-	static ConstructorHelpers::FClassFinder<UUserWidget> MainWidget(TEXT("/Game/Blueprint/HUDWidget"));
+	static ConstructorHelpers::FClassFinder<UMyUserWidget> MainWidget(TEXT("/Game/Blueprint/HUDWidget"));
 	if (!ensure (MainWidget.Class != nullptr)) return;
 
 	MyWidget = MainWidget.Class;
@@ -17,14 +18,12 @@ void UMyGameInstance::Init() {
 }
 
 void UMyGameInstance::ShowWidget() {
-	UUserWidget* MyHUD = CreateWidget<UUserWidget>(this, MyWidget);
-	MyHUD->AddToViewport();
+	UMyUserWidget* MyHUD = CreateWidget<UMyUserWidget>(this, MyWidget);
+	MyUserWidget = MyHUD;
+	MyUserWidget->AddToViewport();
+}
 
-	APlayerController* PlayerController = GetFirstLocalPlayerController();
-	FInputModeUIOnly InputModeData;
-	InputModeData.SetWidgetToFocus(MyHUD->TakeWidget());
-	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-
-	PlayerController->SetInputMode(InputModeData);
-	PlayerController->bShowMouseCursor = true;
+void UMyGameInstance::UpdateFoodBar(float NewPercent)
+{
+	MyUserWidget->UpdateFoodBar(NewPercent);
 }

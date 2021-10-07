@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Item.h"
 #include "MyUserWidget.h"
+#include "MyGameInstance.h"
 #include "Projet2Character.generated.h"
 
 USTRUCT()
@@ -43,6 +44,8 @@ class AProjet2Character : public ACharacter
 
 public:
 	AProjet2Character();
+
+	UMyGameInstance* MyGameInstance;
 
 	UPROPERTY(VisibleAnywhere)
 	class UMyUserWidget* currentWidget;
@@ -97,6 +100,7 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
+	virtual void BeginPlay() override;
 
 public:
 	/** Returns CameraBoom subobject **/

@@ -3,23 +3,18 @@
 
 #include "MyUserWidget.h"
 
+#include "MyGameInstance.h"
+
 bool UMyUserWidget::Initialize()
 {
 	Super::Initialize();
-	return false;
+	return true;
 }
 
 void UMyUserWidget::UpdateFoodBar(float NewPercent)
 {
-	FoodBar->Percent = NewPercent;
+	FoodBar->SetPercent(NewPercent);
+	FString TheFloatStr = FString::SanitizeFloat(FoodBar->Percent);
+	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString(TheFloatStr));
 }
 
-//void UMyUserWidget::Tick(FGeometry MyGeometry, float InDeltaTime)
-//{
-//	Super::Tick(MyGeometry,InDeltaTime);
-//	AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
-//	if (MyGameState != NULL) {
-//		FoodBarPercent = MyGameState->Score / 5;
-//	}
-//	UpdateFoodBar(FoodBarPercent);
-//}

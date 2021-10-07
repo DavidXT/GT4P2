@@ -16,7 +16,9 @@ class PROJET2_API AMyGameState : public AGameStateBase
 
 public :
 	UPROPERTY(VisibleAnywhere)
-	int Score;
-
-	void AddScore(int);
+	float Score;
+	
+	float GetScore();
+	
+	void AddScore(float);
 };

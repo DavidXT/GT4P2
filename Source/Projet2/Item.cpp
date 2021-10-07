@@ -37,7 +37,11 @@ void AItem::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherAct
 {
 	if(OtherActor->IsA(AProjet2Character::StaticClass()))
 	{
-		((AProjet2Character*)OtherActor)->currentItem = this;
+		if(((AProjet2Character*)OtherActor)->currentItem == nullptr)
+		{
+			((AProjet2Character*)OtherActor)->currentItem = this;
+		}
+
 	}
 }
 
@@ -46,7 +50,10 @@ void AItem::OnEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor
 {
 	if(OtherActor->IsA(AProjet2Character::StaticClass()))
 	{
-		((AProjet2Character*)OtherActor)->currentItem = nullptr;
+		if(((AProjet2Character*)OtherActor)->currentItem == this){
+			((AProjet2Character*)OtherActor)->currentItem = nullptr;
+		}
+
 	}
 }
 

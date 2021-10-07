@@ -7,6 +7,7 @@
 #include "Components/BoxComponent.h"
 #include "Item.h"
 #include "MyGameState.h"
+#include "MyGameInstance.h"
 #include "DepotZone.generated.h"
 
 UCLASS()
@@ -17,11 +18,14 @@ class PROJET2_API ADepotZone : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ADepotZone();
+
+	UMyGameInstance* MyGameInstance;
 	
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* Collider;
 
-	
+	UPROPERTY(VisibleAnywhere)
+	float UpdateFoodPercent;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

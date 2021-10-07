@@ -18,7 +18,7 @@ class PROJET2_API UMyUserWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	virtual bool Initialize();
+	virtual bool Initialize() override;
 
 	UPROPERTY(VisibleAnywhere)
 		float FoodBarPercent;

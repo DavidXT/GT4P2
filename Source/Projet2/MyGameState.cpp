@@ -3,7 +3,12 @@
 
 #include "MyGameState.h"
 
-void AMyGameState::AddScore(int S)
+float AMyGameState::GetScore()
+{
+	return Score;
+}
+
+void AMyGameState::AddScore(float S)
 {
 	Score += S;
 }
