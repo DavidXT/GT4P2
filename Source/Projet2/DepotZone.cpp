@@ -30,7 +30,7 @@ void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
 		if (MyGameState != NULL) {
 			MyGameState->AddScore(1);
-			UpdateFoodPercent = MyGameState->GetScore()/2.0f;
+			UpdateFoodPercent = MyGameState->GetScore()/MyGameState->WinScore;
 			MyGameInstance->UpdateFoodBar(UpdateFoodPercent);
 		}
 		OtherActor->Destroy();

@@ -18,6 +18,9 @@ public :
 	UPROPERTY(VisibleAnywhere)
 	float Score;
 	
+	UPROPERTY(VisibleAnywhere)
+	float WinScore = 5.0f;
+	
 	float GetScore();
 	
 	void AddScore(float);
