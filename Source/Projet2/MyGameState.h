@@ -15,6 +15,7 @@ class PROJET2_API AMyGameState : public AGameStateBase
 	GENERATED_BODY()
 
 public :
+	UPROPERTY(VisibleAnywhere)
 	int Score;
 
 	void AddScore(int);
