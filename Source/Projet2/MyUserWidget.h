@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/ProgressBar.h"
-#include "MyGameState.h"
-#include "Layout/Geometry.h"
 #include "MyUserWidget.generated.h"
 
 /**

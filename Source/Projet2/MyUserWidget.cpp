@@ -14,7 +14,5 @@ bool UMyUserWidget::Initialize()
 void UMyUserWidget::UpdateFoodBar(float NewPercent)
 {
 	FoodBar->SetPercent(NewPercent);
-	FString TheFloatStr = FString::SanitizeFloat(FoodBar->Percent);
-	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString(TheFloatStr));
 }
 

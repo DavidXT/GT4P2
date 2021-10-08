@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "MyUserWidget.h"
+#include "EndGameWidget.h"
 #include "MyGameInstance.generated.h"
 
 /**
@@ -25,8 +26,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateFoodBar(float NewPercent);
 
-	UMyUserWidget* MyUserWidget; 
+	UFUNCTION(BlueprintCallable)
+	void ShowWidgetEndGame(bool GameState);
+
+	UMyUserWidget* MyUserWidget;
+
+	UEndGameWidget* EndGameWidget;
 
 private:
 	TSubclassOf<class UMyUserWidget> MyWidget;
+	TSubclassOf<class UEndGameWidget> EndScreen;
 };
