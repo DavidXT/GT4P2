@@ -26,6 +26,9 @@ public:
 	bool bHolding;
 	UPROPERTY(VisibleAnywhere)
 	bool bGravity;
+
+	UPROPERTY(EditAnywhere)
+	int distanceBurger;
 	
 
 protected:

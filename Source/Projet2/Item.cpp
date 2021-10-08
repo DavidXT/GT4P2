@@ -18,7 +18,8 @@ AItem::AItem()
 	
 	Collider = CreateDefaultSubobject<USphereComponent>(FName("Collider"));
 	Collider->SetupAttachment(Mesh);
-	
+
+	distanceBurger = 10;
 	bHolding = false;
 	bGravity = true;
 
@@ -75,7 +76,7 @@ void AItem::Tick(float DeltaTime)
 	TargetPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 	if(bHolding==true)
 	{
-		SetActorLocationAndRotation(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation(),GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorRotation());
+		SetActorLocationAndRotation(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation()+GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorForwardVector()*distanceBurger,GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorRotation());
 	}
 	
 }

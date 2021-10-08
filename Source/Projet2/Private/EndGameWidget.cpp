@@ -2,6 +2,9 @@
 
 
 #include "EndGameWidget.h"
+#include "SlateCore.h"
+#include "LandscapeEditor/Public/LandscapeEditorObject.h"
+#include "Styling/SlateColor.h"
 
 bool UEndGameWidget::Initialize()
 {
@@ -13,11 +16,11 @@ void UEndGameWidget::ShowEndScreen(bool GameState)
 {
 	if(GameState)
 	{
-		//EndGameTexte->SetText(FText("WIN"));
+		EndGameText->SetText(FText::FromString("WIN"));
 	}
 	else
 	{
-		//EndGameTexte->SetText("LOSE");
+		EndGameText->SetText(FText::FromString("LOSE"));
 	}
 }
 
