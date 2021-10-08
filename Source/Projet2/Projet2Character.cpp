@@ -95,6 +95,7 @@ void AProjet2Character::PickItem()
 	{
 		bIsHoldingItem = true;
 		currentItem->PickItem();
+		//Mesh1E->PlayAnimation(animPickUp, true);
 	}
 }
 
@@ -104,6 +105,7 @@ void AProjet2Character::DropItem()
 	{
 		bIsHoldingItem = false;
 		currentItem->PickItem();
+		//Mesh1E->PlayAnimation(animWalkCarry, true);
 	}
 }
 

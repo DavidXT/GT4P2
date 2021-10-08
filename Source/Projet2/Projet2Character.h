@@ -29,6 +29,22 @@ class AProjet2Character : public ACharacter
 {
 	GENERATED_BODY()
 
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	USkeletalMeshComponent* Mesh1E;
+	
+	/** Get Animations */
+	UPROPERTY(EditDefaultsOnly, Category = animation)
+	UAnimSequence* animPickUp;
+	
+	UPROPERTY(EditDefaultsOnly, Category = animation)
+	UAnimSequence* animWalkCarry;
+	
+	UPROPERTY(EditDefaultsOnly, Category = animation)
+	UAnimSequence* animVictory;
+	
+	UPROPERTY(EditDefaultsOnly, Category = animation)
+	UAnimSequence* animDefeat;
+	
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
