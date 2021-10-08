@@ -3,7 +3,6 @@
 
 #include "EndGameWidget.h"
 #include "SlateCore.h"
-#include "LandscapeEditor/Public/LandscapeEditorObject.h"
 #include "Styling/SlateColor.h"
 
 bool UEndGameWidget::Initialize()
