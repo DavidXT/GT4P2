@@ -15,6 +15,9 @@ public:
 	// Sets default values for this actor's properties
 	ATargetActor();
 
+	UPROPERTY(VisibleAnywhere)
+	bool bHasItem;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
