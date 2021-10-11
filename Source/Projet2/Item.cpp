@@ -2,7 +2,7 @@
 
 
 #include "Item.h"
-
+#include "Projet2Character.h"
 
 
 
