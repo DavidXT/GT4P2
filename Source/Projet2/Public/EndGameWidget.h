@@ -27,4 +27,7 @@ public:
 
 	UFUNCTION()
 	void ShowEndScreen(bool GameState);
+	
+	UFUNCTION()
+	void OnClickRestart();
 };

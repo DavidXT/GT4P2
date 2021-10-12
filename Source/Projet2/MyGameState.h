@@ -19,7 +19,7 @@ public :
 	float Score;
 	
 	UPROPERTY(VisibleAnywhere)
-	float WinScore = 5.0f;
+	float WinScore = 1.0f;
 	
 	float GetScore();
 	

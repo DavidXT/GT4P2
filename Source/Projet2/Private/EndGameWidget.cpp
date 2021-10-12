@@ -3,11 +3,13 @@
 
 #include "EndGameWidget.h"
 #include "SlateCore.h"
+#include "Kismet/GameplayStatics.h"
 #include "Styling/SlateColor.h"
 
 bool UEndGameWidget::Initialize()
 {
 	Super::Initialize();
+	RestartButton->OnClicked.AddDynamic(this, &UEndGameWidget::OnClickRestart);
 	return true;
 }
 
@@ -21,6 +23,11 @@ void UEndGameWidget::ShowEndScreen(bool GameState)
 	{
 		EndGameText->SetText(FText::FromString("LOSE"));
 	}
+}
+
+void UEndGameWidget::OnClickRestart()
+{
+	UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
 }
 
 

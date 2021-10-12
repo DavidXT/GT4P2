@@ -27,6 +27,13 @@ void UMyGameInstance::ShowWidget() {
 	UMyUserWidget* MyHUD = CreateWidget<UMyUserWidget>(this, MyWidget);
 	MyUserWidget = MyHUD;
 	MyUserWidget->AddToViewport();
+
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	
+	FInputModeGameOnly InputModeData;
+	
+	PlayerController->SetInputMode(InputModeData);
+	PlayerController->bShowMouseCursor = false;
 }
 
 void UMyGameInstance::UpdateFoodBar(float NewPercent)
