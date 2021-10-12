@@ -34,6 +34,7 @@ void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 			MyGameInstance->UpdateFoodBar(UpdateFoodPercent);
 			if(MyGameState->GetScore()>=MyGameState->WinScore)
 			{
+				MyGameState->bIsWin = true;
 				MyGameInstance->ShowWidgetEndGame(true);
 			}
 		}

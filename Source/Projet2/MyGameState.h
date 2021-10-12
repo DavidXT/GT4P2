@@ -20,6 +20,12 @@ public :
 	
 	UPROPERTY(VisibleAnywhere)
 	float WinScore = 1.0f;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bIsWin = false;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bIsLose = false;
 	
 	float GetScore();
 	

@@ -10,6 +10,7 @@ UAnimInstance1::UAnimInstance1()
 {
 	Speed = 0.0;
 	bIsHoldingItem = false;
+	MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
 }
 
 
@@ -28,6 +29,12 @@ void UAnimInstance1::NativeUpdateAnimation(float DeltaSeconds)
 	{
 		bIsHoldingItem = ((AProjet2Character*)OwningActor)->bIsHoldingItem;
 	}
+	if (MyGameState != NULL)
+	{
+		bIsWin = MyGameState->bIsWin;
+		bIsLose = MyGameState->bIsLose;
+	}
+	
 	
 }
 

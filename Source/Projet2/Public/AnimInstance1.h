@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Projet2/MyGameState.h"
 #include "Runtime/Engine/Classes/Animation/AnimInstance.h"
 #include "AnimInstance1.generated.h"
 /**
@@ -15,12 +16,20 @@ class UAnimInstance1: public UAnimInstance
 
 public:
 	UAnimInstance1();
+
+	AMyGameState* MyGameState;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Generic")
 	float Speed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Generic")
 	bool bIsHoldingItem;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Generic")
+	bool bIsWin;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Generic")
+	bool bIsLose;
 	
 	UPROPERTY(EditDefaultsOnly, Category = animation)
 	UAnimSequence* animPickUp;
