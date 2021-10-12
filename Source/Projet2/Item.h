@@ -24,8 +24,8 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	bool bGravity;
 
-	UPROPERTY(EditAnywhere)
-	int distanceBurger;
+	UPROPERTY(VisibleAnywhere)
+	float FoodValue;
 	
 
 protected:

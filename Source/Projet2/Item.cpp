@@ -19,7 +19,8 @@ AItem::AItem()
 	Collider = CreateDefaultSubobject<USphereComponent>(FName("Collider"));
 	Collider->SetupAttachment(Mesh);
 
-	distanceBurger = 12;
+	FoodValue = 1;
+	
 	bHolding = false;
 	bGravity = true;
 

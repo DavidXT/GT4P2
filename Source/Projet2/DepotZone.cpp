@@ -26,10 +26,10 @@ void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 {
 	if(OtherActor->IsA(AItem::StaticClass()))
 	{
-		GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("Overlap Burger!"));
+		//GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("Overlap Burger!"));
 		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
 		if (MyGameState != NULL) {
-			MyGameState->AddScore(1);
+			MyGameState->AddScore(((AItem*)OtherActor)->FoodValue);
 			UpdateFoodPercent = MyGameState->GetScore()/MyGameState->WinScore;
 			MyGameInstance->UpdateFoodBar(UpdateFoodPercent);
 			if(MyGameState->GetScore()>=MyGameState->WinScore)
