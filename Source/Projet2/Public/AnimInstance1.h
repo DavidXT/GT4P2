@@ -19,6 +19,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Generic")
 	float Speed;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Generic")
+	bool bIsHoldingItem;
+	
 	UPROPERTY(EditDefaultsOnly, Category = animation)
 	UAnimSequence* animPickUp;
 
