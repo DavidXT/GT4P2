@@ -52,7 +52,9 @@ public:
 	
 	UFUNCTION()
 		void PickItem();
-	
+
+	UPROPERTY(VisibleAnywhere)
+	AActor* Player;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

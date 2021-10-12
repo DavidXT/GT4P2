@@ -73,10 +73,14 @@ void AItem::PickItem()
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	TargetPosition = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
 	if(bHolding==true)
 	{
-		SetActorLocationAndRotation(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation()+GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorForwardVector()*distanceBurger,GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorRotation());
+		Player = GetWorld()->GetFirstPlayerController()->GetPawn();
+		if(Player->IsA(AProjet2Character::StaticClass()))
+		{
+			TargetPosition = ((AProjet2Character*)Player)->FP_FistLocation->GetComponentLocation();
+			SetActorLocationAndRotation(TargetPosition,GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorRotation());
+		}
 	}
 	
 }

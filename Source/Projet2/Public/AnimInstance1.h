@@ -29,9 +29,3 @@ public:
 
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 };
-/*PROJET2_API AnimInstance1
-{
-public:
-	AnimInstance1();
-	~AnimInstance1();
-};*/

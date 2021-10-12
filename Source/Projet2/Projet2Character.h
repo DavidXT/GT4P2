@@ -7,6 +7,7 @@
 #include "Item.h"
 #include "MyUserWidget.h"
 #include "MyGameInstance.h"
+#include "Components/SceneComponent.h"
 #include "Projet2Character.generated.h"
 
 USTRUCT()
@@ -57,11 +58,16 @@ class AProjet2Character : public ACharacter
 
 
 
+
+
 public:
 	AProjet2Character();
 
 	UPROPERTY (VisibleDefaultsOnly, Category = Mesh)
 	USkeletalMeshComponent* Mesh1E;
+
+	UPROPERTY(EditAnywhere)
+	USceneComponent* FP_FistLocation;
 	
 	UMyGameInstance* MyGameInstance;
 

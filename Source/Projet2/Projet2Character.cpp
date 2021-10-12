@@ -2,7 +2,6 @@
 
 #include "Projet2Character.h"
 
-#include "AnimInstance1.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -45,7 +44,10 @@ AProjet2Character::AProjet2Character()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
-	
+
+	//Create socket to getItem
+	FP_FistLocation = CreateDefaultSubobject<USceneComponent>(TEXT("FistLocation"));
+	FP_FistLocation->SetupAttachment(GetCapsuleComponent());
 
 	bIsHoldingItem = false;
 }
