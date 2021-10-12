@@ -24,20 +24,30 @@ class PROJET2_API AMyAIController1 : public AAIController
 	
 	/*Blackboard comp ref*/
 	UBlackboardComponent* BlackboardComp;
-
+	
+	/*Blackboard key*/
 	UPROPERTY(EditDefaultsOnly, Category = AI)
 	FName LocationToGoKey;
 
+	UPROPERTY(EditDefaultsOnly, Category = AI)
+	FName BlackboardKey ;
+	
 	TArray<AActor*> BotTargetPoints;
 
+	/*Executes right when the controller possess a Pawn*/
 	virtual void OnPossess(APawn* InPawn) override;
+
+	
 
 	public:
  
 	/*----------Constructor----------*/
 	AMyAIController1();
- 
+	
 	FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }
  
 	FORCEINLINE TArray<AActor*> GetAvailableTargetPoints() { return BotTargetPoints; }
+
+	/*Sets the sensed target in the blackboard*/
+	void SetSeenTarget(APawn* InPawn);
 };

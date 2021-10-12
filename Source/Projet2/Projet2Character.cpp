@@ -2,6 +2,7 @@
 
 #include "Projet2Character.h"
 
+#include "AnimInstance1.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -54,6 +55,7 @@ AProjet2Character::AProjet2Character()
 
 void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
+	
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);

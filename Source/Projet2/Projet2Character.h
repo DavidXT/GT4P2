@@ -29,8 +29,7 @@ class AProjet2Character : public ACharacter
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	USkeletalMeshComponent* Mesh1E;
+	
 	
 	/** Get Animations */
 	UPROPERTY(EditDefaultsOnly, Category = animation)
@@ -61,6 +60,9 @@ class AProjet2Character : public ACharacter
 public:
 	AProjet2Character();
 
+	UPROPERTY (VisibleDefaultsOnly, Category = Mesh)
+	USkeletalMeshComponent* Mesh1E;
+	
 	UMyGameInstance* MyGameInstance;
 
 	UPROPERTY(VisibleAnywhere)

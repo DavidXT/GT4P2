@@ -19,6 +19,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Generic")
 	float Speed;
 
+	UPROPERTY(EditDefaultsOnly, Category = animation)
+	UAnimSequence* animPickUp;
+
+
+
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 };
 /*PROJET2_API AnimInstance1
