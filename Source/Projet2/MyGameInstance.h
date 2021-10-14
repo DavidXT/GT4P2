@@ -22,6 +22,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ShowWidget();
+	
+
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateFoodBar(float NewPercent);

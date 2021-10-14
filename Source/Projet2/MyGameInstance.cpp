@@ -14,13 +14,13 @@ UMyGameInstance::UMyGameInstance(const FObjectInitializer& ObjectInitializer) {
 
 	static ConstructorHelpers::FClassFinder<UEndGameWidget> WidgetEndGame(TEXT("/Game/Blueprint/EndScreen"));
 	if (!ensure (WidgetEndGame.Class != nullptr)) return;
-
+		
 	EndScreen = WidgetEndGame.Class;
 	
 }
 
 void UMyGameInstance::Init() {
-	
+
 }
 
 void UMyGameInstance::ShowWidget() {
@@ -28,9 +28,8 @@ void UMyGameInstance::ShowWidget() {
 	MyUserWidget = MyHUD;
 	MyUserWidget->AddToViewport();
 
-	APlayerController* PlayerController = GetFirstLocalPlayerController();
-	
-	FInputModeGameOnly InputModeData;
+	APlayerController* PlayerController = GetFirstLocalPlayerController();;
+	FInputModeGameOnly const InputModeData;
 	
 	PlayerController->SetInputMode(InputModeData);
 	PlayerController->bShowMouseCursor = false;
@@ -48,8 +47,7 @@ void UMyGameInstance::ShowWidgetEndGame(bool GameState)
 	EndGameWidget->ShowEndScreen(GameState);
 	EndGameWidget->AddToViewport();
 
-	APlayerController* PlayerController = GetFirstLocalPlayerController();
-
+	APlayerController* PlayerController = GetFirstLocalPlayerController();;
 	FInputModeUIOnly InputModeData;
 	InputModeData.SetWidgetToFocus(EndGameWidget->TakeWidget());
 	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
