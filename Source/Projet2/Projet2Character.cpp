@@ -2,6 +2,8 @@
 
 #include "Projet2Character.h"
 
+#include "AICharacter.h"
+#include "MyGameState.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -84,8 +86,21 @@ void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerI
 void AProjet2Character::BeginPlay()
 {
 	Super::BeginPlay();
+	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this,&AProjet2Character::OnBeginOverlap);
 	MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 	MyGameInstance->ShowWidget();
+}
+
+void AProjet2Character::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if(OtherActor->IsA(AAICharacter::StaticClass()))
+	{
+		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
+		if (MyGameState != NULL) {
+			MyGameState->Lose();
+		}
+	}
 }
 
 void AProjet2Character::Tick(float DeltaTime)

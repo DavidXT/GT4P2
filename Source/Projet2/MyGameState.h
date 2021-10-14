@@ -26,8 +26,13 @@ public :
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsLose = false;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bGameStart = false;
 	
 	float GetScore();
 	
 	void AddScore(float);
+
+	void Lose();
 };

@@ -24,6 +24,8 @@ void UMyGameInstance::Init() {
 }
 
 void UMyGameInstance::ShowWidget() {
+
+	
 	UMyUserWidget* MyHUD = CreateWidget<UMyUserWidget>(this, MyWidget);
 	MyUserWidget = MyHUD;
 	MyUserWidget->AddToViewport();
