@@ -19,7 +19,7 @@ public :
 	float Score;
 	
 	UPROPERTY(VisibleAnywhere)
-	float WinScore = 1.0f;
+	float WinScore = 5.0f;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsWin = false;

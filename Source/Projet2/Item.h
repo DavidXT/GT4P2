@@ -53,6 +53,9 @@ public:
 	UFUNCTION()
 		void PickItem();
 
+	UFUNCTION()
+	void DropItem();
+
 	UPROPERTY(VisibleAnywhere)
 	AActor* Player;
 

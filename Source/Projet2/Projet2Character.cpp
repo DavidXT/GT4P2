@@ -122,7 +122,7 @@ void AProjet2Character::DropItem()
 {
 	if(currentItem != nullptr)
 	{
-		currentItem->PickItem();
+		currentItem->DropItem();
 		bIsHoldingItem = false;
 		//Mesh1E->PlayAnimation(animWalkCarry, true);
 	}
