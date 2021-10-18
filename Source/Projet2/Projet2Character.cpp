@@ -110,9 +110,9 @@ void AProjet2Character::Tick(float DeltaTime)
 
 void AProjet2Character::PickItem()
 {
-	if(currentItem != nullptr)
+	if(CurrentItem != nullptr)
 	{
-		currentItem->PickItem();
+		CurrentItem->PickItem(this);
 		bIsHoldingItem = true;
 		//Mesh1E->PlayAnimation(animPickUp, true);
 	}
@@ -120,11 +120,10 @@ void AProjet2Character::PickItem()
 
 void AProjet2Character::DropItem()
 {
-	if(currentItem != nullptr)
+	if(CurrentItem != nullptr)
 	{
-		currentItem->DropItem();
+		CurrentItem->DropItem();
 		bIsHoldingItem = false;
-		//Mesh1E->PlayAnimation(animWalkCarry, true);
 	}
 }
 

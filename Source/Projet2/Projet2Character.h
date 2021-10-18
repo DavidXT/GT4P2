@@ -70,12 +70,9 @@ public:
 	USceneComponent* FP_FistLocation;
 	
 	UMyGameInstance* MyGameInstance;
-
+	
 	UPROPERTY(VisibleAnywhere)
-	class UMyUserWidget* currentWidget;
-
-	UPROPERTY(VisibleAnywhere)
-	class AItem* currentItem;
+	class AItem* CurrentItem;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsHoldingItem;

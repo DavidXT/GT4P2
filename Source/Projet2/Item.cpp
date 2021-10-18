@@ -39,9 +39,9 @@ void AItem::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherAct
 {
 	if(OtherActor->IsA(AProjet2Character::StaticClass()))
 	{
-		if(((AProjet2Character*)OtherActor)->currentItem == nullptr)
+		if(((AProjet2Character*)OtherActor)->CurrentItem == nullptr)
 		{
-			((AProjet2Character*)OtherActor)->currentItem = this;
+			((AProjet2Character*)OtherActor)->CurrentItem = this;
 		}
 
 	}
@@ -52,22 +52,23 @@ void AItem::OnEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor
 {
 	if(OtherActor->IsA(AProjet2Character::StaticClass()))
 	{
-		if(((AProjet2Character*)OtherActor)->currentItem == this){
-			((AProjet2Character*)OtherActor)->currentItem = nullptr;
+		if(((AProjet2Character*)OtherActor)->CurrentItem == this){
+			((AProjet2Character*)OtherActor)->CurrentItem = nullptr;
 		}
-
 	}
 }
 
-void AItem::PickItem()
+void AItem::PickItem(AActor* Holder)
 {
 	bHolding = true;
 	bGravity = false;
 	Mesh->SetEnableGravity(bGravity);
 	Mesh->SetSimulatePhysics(false);
 	Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
-	AttachToComponent(((AProjet2Character*)Player)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	if(Holder->IsA(AProjet2Character::StaticClass()))
+	{
+		AttachToComponent(((AProjet2Character*)Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	}
 }
 
 void AItem::DropItem()
@@ -77,7 +78,6 @@ void AItem::DropItem()
 	Mesh->SetEnableGravity(bGravity);
 	Mesh->SetSimulatePhysics(true);
 	Mesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
 	DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 }
 
@@ -87,16 +87,16 @@ void AItem::DropItem()
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if(bHolding==true)
-	{
-		Player = GetWorld()->GetFirstPlayerController()->GetPawn();
-		if(Player->IsA(AProjet2Character::StaticClass()))
-		{
-			//TargetPosition = ((AProjet2Character*)Player)->FP_FistLocation->GetComponentLocation();
-			//SetActorLocationAndRotation(TargetPosition,GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorRotation());
-			RootComponent->SetupAttachment(((AProjet2Character*)Player)->Mesh1E);
-		}
-	}
+	//V1 du déplacement en cas de problème
+	// if(bHolding==true)
+	// {
+	// 	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
+	// 	if(Player->IsA(AProjet2Character::StaticClass()))
+	// 	{
+	// 		//TargetPosition = ((AProjet2Character*)Player)->FP_FistLocation->GetComponentLocation();
+	// 		//SetActorLocationAndRotation(TargetPosition,GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorRotation());
+	// 	}
+	// }
 	
 }
 
