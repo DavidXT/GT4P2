@@ -2,7 +2,7 @@
 
 
 #include "AICharacter.h"
-
+#include "MyAIController1.h"
 // Sets default values
 AAICharacter::AAICharacter()
 {
@@ -49,5 +49,28 @@ void AAICharacter::OnSeePlayer(APawn* InPawn)
 	{
 		GLog->Log("Oh hello there");
 		AIController->SetSeenTarget(InPawn);
+	}
+}
+
+void AAICharacter::Pick()
+{
+	if(!bHolding)
+	{
+		if(CurrentItem != nullptr)
+		{
+			CurrentItem->PickItem(this);
+		}
+	}
+}
+
+void AAICharacter::Drop()
+{
+	if(bHolding)
+	{
+		if(CurrentItem != nullptr)
+		{
+			CurrentItem->DropItem();
+			ItemPosition = CurrentItem->GetActorLocation();
+		}
 	}
 }

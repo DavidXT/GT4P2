@@ -5,6 +5,7 @@
 #include "BotTargetPoint.h"
 #include "MyAIController1.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Projet2/TargetActor.h"
 
 EBTNodeResult::Type UBTTargetPointSelection::ExecuteTask(UBehaviorTreeComponent & OwnerComp, uint8 * NodeMemory)
 {
@@ -17,7 +18,7 @@ EBTNodeResult::Type UBTTargetPointSelection::ExecuteTask(UBehaviorTreeComponent 
 	{
        
 		UBlackboardComponent* BlackboardComp = AICon->GetBlackboardComp();
-		ABotTargetPoint* CurrentPoint = Cast<ABotTargetPoint>(BlackboardComp->GetValueAsObject("LocationToGo"));
+		ATargetActor* CurrentPoint = Cast<ATargetActor>(BlackboardComp->GetValueAsObject("LocationToGo"));
  
 		TArray<AActor*> AvailableTargetPoints = AICon->GetAvailableTargetPoints();
        
@@ -25,14 +26,14 @@ EBTNodeResult::Type UBTTargetPointSelection::ExecuteTask(UBehaviorTreeComponent 
 		int32 RandomIndex;
  
 		//Here, we store the possible next target point
-		ABotTargetPoint* NextTargetPoint = nullptr;
+		ATargetActor* NextTargetPoint = nullptr;
  
 		//Find a next point which is different from the current one
 		do
 		{
 			RandomIndex = FMath::RandRange(0, AvailableTargetPoints.Num()-1);
 			//Remember that the Array provided by the Controller function contains AActor* objects so we need to cast.
-			NextTargetPoint = Cast<ABotTargetPoint>(AvailableTargetPoints[RandomIndex]);
+			NextTargetPoint = Cast<ATargetActor>(AvailableTargetPoints[RandomIndex]);
 		} while (CurrentPoint == NextTargetPoint);
  
 		//Update the next location in the Blackboard so the bot can move to the next Blackboard value

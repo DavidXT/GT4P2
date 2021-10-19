@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Character.h"
-#include "MyAIController1.h"
 #include "Perception/PawnSensingComponent.h"
+#include "Projet2/Item.h"
 #include "AICharacter.generated.h"
 
 UCLASS()
@@ -30,6 +30,13 @@ public:
 	// Sets default values for this character's properties
 	AAICharacter();
 
+	AItem* CurrentItem;
+
+	void Pick();
+	void Drop();
+	bool bHolding;
+	FVector ItemPosition;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

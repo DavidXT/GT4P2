@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "AICharacter.h"
-#include "BotTargetPoint.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
@@ -31,18 +30,21 @@ class PROJET2_API AMyAIController1 : public AAIController
 
 	UPROPERTY(EditDefaultsOnly, Category = AI)
 	FName BlackboardKey ;
+
+	UPROPERTY(EditDefaultsOnly, Category = AI)
+	FName BlackboardPosition ;
 	
 	TArray<AActor*> BotTargetPoints;
 
 	/*Executes right when the controller possess a Pawn*/
 	virtual void OnPossess(APawn* InPawn) override;
-
 	
 
 	public:
- 
 	/*----------Constructor----------*/
 	AMyAIController1();
+
+	AAICharacter* AIChar;
 	
 	FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }
  
