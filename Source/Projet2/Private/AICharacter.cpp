@@ -13,6 +13,10 @@ AAICharacter::AAICharacter()
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 	//Set the peripheral vision angle to 90 degrees
 	PawnSensingComp->SetPeripheralVisionAngle(90.f);
+
+	//Create socket to getItem
+	FP_FistLocation = CreateDefaultSubobject<USceneComponent>(TEXT("FistLocation"));
+	FP_FistLocation->SetupAttachment(GetCapsuleComponent());
 }
 
 // Called when the game starts or when spawned

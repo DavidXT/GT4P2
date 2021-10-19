@@ -2,6 +2,8 @@
 
 
 #include "Item.h"
+
+#include "AICharacter.h"
 #include "Projet2Character.h"
 
 
@@ -68,6 +70,10 @@ void AItem::PickItem(AActor* Holder)
 	if(Holder->IsA(AProjet2Character::StaticClass()))
 	{
 		AttachToComponent(((AProjet2Character*)Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	}
+	if(Holder->IsA(AAICharacter::StaticClass()))
+	{
+		AttachToComponent(((AAICharacter*)Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	}
 }
 
