@@ -33,11 +33,15 @@ public:
 	// Sets default values for this character's properties
 	AAICharacter();
 
+	UPROPERTY(VisibleAnywhere)
 	AItem* CurrentItem;
 
 	void Pick();
 	void Drop();
+
+	UPROPERTY(VisibleAnywhere)
 	bool bHolding;
+	
 	FVector ItemPosition;
 	
 protected:

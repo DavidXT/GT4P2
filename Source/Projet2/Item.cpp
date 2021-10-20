@@ -93,16 +93,5 @@ void AItem::DropItem()
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//V1 du déplacement en cas de problème
-	// if(bHolding==true)
-	// {
-	// 	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
-	// 	if(Player->IsA(AProjet2Character::StaticClass()))
-	// 	{
-	// 		//TargetPosition = ((AProjet2Character*)Player)->FP_FistLocation->GetComponentLocation();
-	// 		//SetActorLocationAndRotation(TargetPosition,GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorRotation());
-	// 	}
-	// }
-	
 }
 

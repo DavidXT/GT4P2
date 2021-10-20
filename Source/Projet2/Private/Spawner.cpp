@@ -3,6 +3,7 @@
 
 #include "Spawner.h"
 
+#include "AICharacter.h"
 #include "Projet2/Item.h"
 
 // Sets default values
@@ -70,6 +71,11 @@ void ASpawner::SpawnIA()
 	if(Item->IsA(AItem::StaticClass()))
 	{
 		((AItem*)Item)->PickItem(IaActor);
+		if(IaActor->IsA(AAICharacter::StaticClass()))
+		{
+			((AAICharacter*)IaActor)->CurrentItem = (AItem*)Item;
+			((AAICharacter*)IaActor)->bHolding = true;
+		}
 	}
 }
 

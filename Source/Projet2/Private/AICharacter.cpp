@@ -63,6 +63,7 @@ void AAICharacter::Pick()
 		if(CurrentItem != nullptr)
 		{
 			CurrentItem->PickItem(this);
+			bHolding = true;
 		}
 	}
 }
@@ -73,7 +74,9 @@ void AAICharacter::Drop()
 	{
 		if(CurrentItem != nullptr)
 		{
+			GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("DropBurger!"));
 			CurrentItem->DropItem();
+			bHolding = false;
 			ItemPosition = CurrentItem->GetActorLocation();
 		}
 	}
