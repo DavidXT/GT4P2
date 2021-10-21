@@ -74,6 +74,7 @@ void ASpawner::SpawnIA()
 		if(IaActor->IsA(AAICharacter::StaticClass()))
 		{
 			((AAICharacter*)IaActor)->CurrentItem = (AItem*)Item;
+			((AAICharacter*)IaActor)->Spawn = this;
 			((AAICharacter*)IaActor)->bHolding = true;
 		}
 	}

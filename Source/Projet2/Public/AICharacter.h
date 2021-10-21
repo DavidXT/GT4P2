@@ -40,10 +40,11 @@ public:
 	void Drop();
 
 	UPROPERTY(VisibleAnywhere)
-	bool bHolding;
+	bool bHolding = false;
+
+	AActor* Spawn;
 	
-	FVector ItemPosition;
-	
+	bool bItemOnTarget = false;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

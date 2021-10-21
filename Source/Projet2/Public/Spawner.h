@@ -25,7 +25,7 @@ public:
 
 	int NbIA;
 
-	int MaxNbIA = 5;
+	int MaxNbIA = 1;
 	
 	UFUNCTION()
 	void SpawnIA();

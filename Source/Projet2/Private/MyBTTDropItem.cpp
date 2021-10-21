@@ -12,8 +12,19 @@ EBTNodeResult::Type UMyBTTDropItem::ExecuteTask(UBehaviorTreeComponent & OwnerCo
 	{
 		if(AICon->AIChar)
 		{
-			AICon->AIChar->Drop();
-			return EBTNodeResult::Succeeded;
+			if(AICon->CurrentPoint != nullptr)
+			{
+				if((AICon->CurrentPoint)->bHasItem == false)
+				{
+					if(AICon->AIChar->bHolding)
+					{
+						AICon->AIChar->Drop();
+						AICon->AIChar->CurrentItem->SetActorLocation(AICon->CurrentPoint->GetActorLocation());
+						AICon->AIChar->bItemOnTarget = true;
+					}
+					return EBTNodeResult::Succeeded;
+				}
+			}
 		}
 	}
 	return EBTNodeResult::Failed;

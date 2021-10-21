@@ -55,3 +55,11 @@ void AMyAIController1::SetSeenTarget(APawn* InPawn)
 		BlackboardComp->SetValueAsObject(BlackboardKey, InPawn);
 	}
 }
+
+void AMyAIController1::SetItemPosition(FVector ItemPosition)
+{
+	if (BlackboardComp)
+	{
+		BlackboardComp->SetValueAsVector(BlackboardPosition, ItemPosition);
+	}
+}

@@ -8,6 +8,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
+#include "Projet2/TargetActor.h"
 #include "MyAIController1.generated.h"
 
 /**
@@ -33,8 +34,10 @@ class PROJET2_API AMyAIController1 : public AAIController
 
 	UPROPERTY(EditDefaultsOnly, Category = AI)
 	FName BlackboardPosition ;
-	
+		
 	TArray<AActor*> BotTargetPoints;
+
+
 
 	/*Executes right when the controller possess a Pawn*/
 	virtual void OnPossess(APawn* InPawn) override;
@@ -44,7 +47,12 @@ class PROJET2_API AMyAIController1 : public AAIController
 	/*----------Constructor----------*/
 	AMyAIController1();
 
+	ATargetActor* CurrentPoint;
 	AAICharacter* AIChar;
+
+	int CurrentNbMove = 0;
+
+	int NbMoveMax = 3;
 	
 	FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }
  
@@ -52,4 +60,6 @@ class PROJET2_API AMyAIController1 : public AAIController
 
 	/*Sets the sensed target in the blackboard*/
 	void SetSeenTarget(APawn* InPawn);
+
+	void SetItemPosition(FVector ItemPosition);
 };
