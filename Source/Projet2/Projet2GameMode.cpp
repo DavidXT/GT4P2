@@ -2,6 +2,7 @@
 
 #include "Projet2GameMode.h"
 #include "Projet2Character.h"
+#include "Algo/ForEach.h"
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -38,3 +39,19 @@ void AProjet2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<AActor>(GeneratedBP->GeneratedClass, TargetActors[randInt]->GetActorLocation(), TargetActors[randInt]->GetActorRotation(), SpawnParams); //Cast blueprint
 	((ATargetActor*)TargetActors[randInt])->bHasItem = true;
 }
+
+bool AProjet2GameMode::CheckAvailableSpot()
+{
+	for (int i = 0; i < TargetActors.Num(); i++)
+	{
+		if(TargetActors[i]->IsA(ATargetActor::StaticClass()))
+		{
+			if(((ATargetActor*)TargetActors[i])->bHasItem == false)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+

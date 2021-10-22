@@ -19,6 +19,7 @@ void ASpawner::BeginPlay()
 {
 	Super::BeginPlay();
 	TimeBeforeSpawn = 0;
+	PGameMode = GetWorld()->GetAuthGameMode<AProjet2GameMode>();
 }
 
 // Called every frame
@@ -67,15 +68,21 @@ void ASpawner::SpawnIA()
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	AActor* IaActor = GetWorld()->SpawnActor<AActor>(GeneratedBPIA->GeneratedClass, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
-	AActor* Item = GetWorld()->SpawnActor<AActor>(GeneratedBPItem->GeneratedClass, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
-	if(Item->IsA(AItem::StaticClass()))
+	if(PGameMode)
 	{
-		((AItem*)Item)->PickItem(IaActor);
-		if(IaActor->IsA(AAICharacter::StaticClass()))
+		if(PGameMode->CheckAvailableSpot())
 		{
-			((AAICharacter*)IaActor)->CurrentItem = (AItem*)Item;
-			((AAICharacter*)IaActor)->Spawn = this;
-			((AAICharacter*)IaActor)->bHolding = true;
+			AActor* Item = GetWorld()->SpawnActor<AActor>(GeneratedBPItem->GeneratedClass, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
+			if(Item->IsA(AItem::StaticClass()))
+			{
+				((AItem*)Item)->PickItem(IaActor);
+				if(IaActor->IsA(AAICharacter::StaticClass()))
+				{
+					((AAICharacter*)IaActor)->CurrentItem = (AItem*)Item;
+					((AAICharacter*)IaActor)->Spawn = this;
+					((AAICharacter*)IaActor)->bHolding = true;
+				}
+			}
 		}
 	}
 }

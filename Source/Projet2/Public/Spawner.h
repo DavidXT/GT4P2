@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Projet2/Projet2GameMode.h"
 #include "Spawner.generated.h"
 
 UCLASS()
@@ -26,7 +27,8 @@ public:
 	int NbIA;
 
 	int MaxNbIA = 1;
-	
+
+	AProjet2GameMode* PGameMode;
 	UFUNCTION()
 	void SpawnIA();
     

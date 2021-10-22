@@ -18,6 +18,8 @@ public:
 	UPROPERTY(EditAnywhere, Category=Target)
 	TArray<AActor*> TargetActors;
 
+	UFUNCTION()
+	bool CheckAvailableSpot();
 protected:
 	virtual void BeginPlay() override;
 };
