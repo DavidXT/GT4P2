@@ -29,21 +29,6 @@ UCLASS(config=Game)
 class AProjet2Character : public ACharacter
 {
 	GENERATED_BODY()
-
-	
-	
-	/** Get Animations */
-	UPROPERTY(EditDefaultsOnly, Category = animation)
-	UAnimSequence* animPickUp;
-	
-	UPROPERTY(EditDefaultsOnly, Category = animation)
-	UAnimSequence* animWalkCarry;
-	
-	UPROPERTY(EditDefaultsOnly, Category = animation)
-	UAnimSequence* animVictory;
-	
-	UPROPERTY(EditDefaultsOnly, Category = animation)
-	UAnimSequence* animDefeat;
 	
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -55,10 +40,6 @@ class AProjet2Character : public ACharacter
 
 	UPROPERTY(EditDefaultsOnly, Category = Config)
 	FZoomData ZoomConfig;
-
-
-
-
 
 public:
 	AProjet2Character();
@@ -92,18 +73,6 @@ protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Value);
-
-	/** 
-	 * Called via input to turn at a given rate. 
-	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
-	 */
-	void TurnAtRate(float Rate);
-
-	/**
-	 * Called via input to turn look up/down at a given rate. 
-	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
-	 */
-	void LookUpAtRate(float Rate);
 
 	/** Pick and Drop Item **/
 	UFUNCTION()

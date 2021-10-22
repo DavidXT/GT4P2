@@ -54,6 +54,7 @@ void UMyGameInstance::ShowWidgetEndGame(bool GameState)
 	InputModeData.SetWidgetToFocus(EndGameWidget->TakeWidget());
 	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 
+	PlayerController->SetIgnoreMoveInput(true);
 	PlayerController->SetInputMode(InputModeData);
 	PlayerController->bShowMouseCursor = true;
 }

@@ -73,14 +73,10 @@ void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerI
 
 	InputComponent->BindAction("ZoomIn", IE_Pressed, this, &AProjet2Character::ZoomIn);
 	InputComponent->BindAction("ZoomOut", IE_Pressed, this, &AProjet2Character::ZoomOut);
-	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
-	// "turn" handles devices that provide an absolute delta, such as a mouse.
-	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
+	
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("TurnRate", this, &AProjet2Character::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("LookUpRate", this, &AProjet2Character::LookUpAtRate);
-
+	
 }
 
 void AProjet2Character::BeginPlay()
@@ -125,18 +121,6 @@ void AProjet2Character::DropItem()
 		CurrentItem->DropItem();
 		bIsHoldingItem = false;
 	}
-}
-
-void AProjet2Character::TurnAtRate(float Rate)
-{
-	// calculate delta for this frame from the rate information
-	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
-}
-
-void AProjet2Character::LookUpAtRate(float Rate)
-{
-	// calculate delta for this frame from the rate information
-	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
 void AProjet2Character::MoveForward(float Value)
