@@ -41,6 +41,7 @@ void ASpawner::Tick(float DeltaTime)
 
 }
 
+
 void ASpawner::SpawnIA()
 {
 	UObject* SpawnedItem = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprint/BP_Item")));

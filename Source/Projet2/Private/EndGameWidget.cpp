@@ -2,9 +2,7 @@
 
 
 #include "EndGameWidget.h"
-#include "SlateCore.h"
 #include "Kismet/GameplayStatics.h"
-#include "Styling/SlateColor.h"
 
 bool UEndGameWidget::Initialize()
 {
@@ -18,10 +16,12 @@ void UEndGameWidget::ShowEndScreen(bool GameState)
 	if(GameState)
 	{
 		EndGameText->SetText(FText::FromString("WIN"));
+		EndGameText->SetColorAndOpacity(FSlateColor(FLinearColor::Green));
 	}
 	else
 	{
 		EndGameText->SetText(FText::FromString("LOSE"));
+		EndGameText->SetColorAndOpacity(FSlateColor(FLinearColor::Red));
 	}
 }
 

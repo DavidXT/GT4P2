@@ -29,6 +29,7 @@ public:
 	int MaxNbIA = 1;
 
 	AProjet2GameMode* PGameMode;
+	
 	UFUNCTION()
 	void SpawnIA();
     
