@@ -23,6 +23,7 @@ void UMyGameInstance::Init() {
 
 }
 
+//Show ProgressBar and 3D Portrait HUD
 void UMyGameInstance::ShowWidget() {
 
 	
@@ -37,11 +38,13 @@ void UMyGameInstance::ShowWidget() {
 	PlayerController->bShowMouseCursor = false;
 }
 
+//Update ProgressBar
 void UMyGameInstance::UpdateFoodBar(float NewPercent)
 {
 	MyUserWidget->UpdateFoodBar(NewPercent);
 }
 
+//Show EndGame Win/Lose screen
 void UMyGameInstance::ShowWidgetEndGame(bool GameState)
 {
 	UEndGameWidget* MyHUD = CreateWidget<UEndGameWidget>(this, EndScreen);

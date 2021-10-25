@@ -5,11 +5,7 @@
 
 #include "MyGameInstance.h"
 
-float AMyGameState::GetScore()
-{
-	return Score;
-}
-
+//Add Score if win show Win Screen
 void AMyGameState::AddScore(float S)
 {
 	Score += S;
@@ -25,6 +21,7 @@ void AMyGameState::AddScore(float S)
 	}
 }
 
+//If Lose show Lose screen
 void AMyGameState::Lose()
 {
 	UMyGameInstance* MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());

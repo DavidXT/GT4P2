@@ -41,9 +41,9 @@ void AItem::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherAct
 {
 	if(OtherActor->IsA(AProjet2Character::StaticClass()))
 	{
-		if(((AProjet2Character*)OtherActor)->CurrentItem == nullptr)
+		if(static_cast<AProjet2Character*>(OtherActor)->CurrentItem == nullptr)
 		{
-			((AProjet2Character*)OtherActor)->CurrentItem = this;
+			static_cast<AProjet2Character*>(OtherActor)->CurrentItem = this;
 		}
 
 	}
@@ -54,8 +54,8 @@ void AItem::OnEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor
 {
 	if(OtherActor->IsA(AProjet2Character::StaticClass()))
 	{
-		if(((AProjet2Character*)OtherActor)->CurrentItem == this){
-			((AProjet2Character*)OtherActor)->CurrentItem = nullptr;
+		if(static_cast<AProjet2Character*>(OtherActor)->CurrentItem == this){
+			static_cast<AProjet2Character*>(OtherActor)->CurrentItem = nullptr;
 		}
 	}
 }
@@ -69,11 +69,11 @@ void AItem::PickItem(AActor* Holder)
 	Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	if(Holder->IsA(AProjet2Character::StaticClass()))
 	{
-		AttachToComponent(((AProjet2Character*)Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		AttachToComponent(static_cast<AProjet2Character*>(Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	}
 	if(Holder->IsA(AAICharacter::StaticClass()))
 	{
-		AttachToComponent(((AAICharacter*)Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		AttachToComponent(static_cast<AAICharacter*>(Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	}
 }
 
