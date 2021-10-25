@@ -52,7 +52,8 @@ void AMyAIController1::SetSeenTarget(APawn* InPawn)
 	//Registers the Pawn that the AI has seen in the blackboard
 	if (BlackboardComp)
 	{
-		BlackboardComp->SetValueAsObject(BlackboardKey, InPawn);
+		AIChar->bAIVisible = true;
+		BlackboardComp->SetValueAsVector(BlackboardKey, InPawn->GetActorLocation());
 	}
 }
 
@@ -61,5 +62,14 @@ void AMyAIController1::SetItemPosition(FVector ItemPosition)
 	if (BlackboardComp)
 	{
 		BlackboardComp->SetValueAsVector(BlackboardPosition, ItemPosition);
+	}
+}
+
+void AMyAIController1::SetNotSeenTarget()
+{
+	if(BehaviorComp)
+	{
+		AIChar->bAIVisible = false;
+		BlackboardComp->ClearValue("Target");
 	}
 }

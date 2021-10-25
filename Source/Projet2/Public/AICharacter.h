@@ -45,6 +45,10 @@ public:
 	AActor* Spawn;
 	
 	bool bItemOnTarget = false;
+	bool bAIVisible = false;
+	float LastSeenTime;
+	float TimeOut = 3.0f;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

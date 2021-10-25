@@ -36,6 +36,17 @@ void AAICharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	AMyAIController1* AIController = Cast<AMyAIController1>(GetController());
+	
+	if(bAIVisible == true)
+	{
+		if((GetWorld()->TimeSeconds - LastSeenTime) > TimeOut)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Je te vois PAS"));
+			AIController->SetNotSeenTarget();
+		}
+	}
+
 }
 
 // Called to bind functionality to input
@@ -51,7 +62,9 @@ void AAICharacter::OnSeePlayer(APawn* InPawn)
 	//Set the seen target on the blackboard
 	if (AIController)
 	{
-		GLog->Log("Oh hello there");
+		AIController->StopMovement();
+		LastSeenTime = GetWorld()->GetTimeSeconds();
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Je te vois"));
 		AIController->SetSeenTarget(InPawn);
 	}
 }

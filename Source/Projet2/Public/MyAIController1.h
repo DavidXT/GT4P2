@@ -62,4 +62,5 @@ class PROJET2_API AMyAIController1 : public AAIController
 	void SetSeenTarget(APawn* InPawn);
 
 	void SetItemPosition(FVector ItemPosition);
+	void SetNotSeenTarget();
 };
