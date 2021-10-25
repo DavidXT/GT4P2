@@ -3,6 +3,7 @@
 
 #include "AnimInstance1.h"
 
+#include "AICharacter.h"
 #include "Projet2/Projet2Character.h"
 
 
@@ -27,7 +28,11 @@ void UAnimInstance1::NativeUpdateAnimation(float DeltaSeconds)
 
 	if(OwningActor->IsA(AProjet2Character::StaticClass()))
 	{
-		bIsHoldingItem = ((AProjet2Character*)OwningActor)->bIsHoldingItem;
+		bIsHoldingItem = static_cast<AProjet2Character*>(OwningActor)->bIsHoldingItem;
+	}
+	if(OwningActor->IsA(AAICharacter::StaticClass()))
+	{
+		bIsHoldingItem = static_cast<AAICharacter*>(OwningActor)->bHolding;
 	}
 	if (MyGameState != NULL)
 	{
