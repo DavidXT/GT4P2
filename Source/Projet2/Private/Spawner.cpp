@@ -45,7 +45,7 @@ void ASpawner::Tick(float DeltaTime)
 void ASpawner::SpawnIA()
 {
 	UObject* SpawnedItem = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprint/BP_Item")));
-	UBlueprint* GeneratedBPItem = Cast<UBlueprint>(SpawnedItem);
+	const UBlueprint* GeneratedBPItem = Cast<UBlueprint>(SpawnedItem);
 	if (!SpawnedItem)
 	{
 		return;
@@ -56,7 +56,7 @@ void ASpawner::SpawnIA()
 		return;
 	}
 	UObject* SpawnedIA = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprint/BP_AIChar")));
-	UBlueprint* GeneratedBPIA = Cast<UBlueprint>(SpawnedIA);
+	const UBlueprint* GeneratedBPIA = Cast<UBlueprint>(SpawnedIA);
 	if (!SpawnedItem)
 	{
 		return;
@@ -76,12 +76,12 @@ void ASpawner::SpawnIA()
 			AActor* Item = GetWorld()->SpawnActor<AActor>(GeneratedBPItem->GeneratedClass, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
 			if(Item->IsA(AItem::StaticClass()))
 			{
-				((AItem*)Item)->PickItem(IaActor);
+				static_cast<AItem*>(Item)->PickItem(IaActor);
 				if(IaActor->IsA(AAICharacter::StaticClass()))
 				{
-					((AAICharacter*)IaActor)->CurrentItem = (AItem*)Item;
-					((AAICharacter*)IaActor)->Spawn = this;
-					((AAICharacter*)IaActor)->bHolding = true;
+					static_cast<AAICharacter*>(IaActor)->CurrentItem = static_cast<AItem*>(Item);
+					static_cast<AAICharacter*>(IaActor)->Spawn = this;
+					static_cast<AAICharacter*>(IaActor)->bHolding = true;
 				}
 			}
 		}

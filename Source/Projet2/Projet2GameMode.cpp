@@ -10,7 +10,7 @@ AProjet2GameMode::AProjet2GameMode()
 {
 	// set default pawn class to our Blueprinted character
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/ThirdPersonCPP/Blueprints/ThirdPersonCharacter"));
-	if (PlayerPawnBPClass.Class != NULL)
+	if (PlayerPawnBPClass.Class != nullptr)
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
@@ -21,23 +21,23 @@ void AProjet2GameMode::BeginPlay()
 	Super::BeginPlay();
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATargetActor::StaticClass(), TargetActors);
 	UObject* SpawnedItem = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprint/BP_Item")));
-	UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnedItem);
+	const UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnedItem);
 	if (!SpawnedItem)
 	{
 		return;
 	}
 	UClass* SpawnClass = SpawnedItem->StaticClass();
-	if (SpawnClass == NULL)
+	if (SpawnClass == nullptr)
 	{
 		return;
 	}
-	int randInt = FMath::RandRange(0,TargetActors.Num()-1);
-	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString::FromInt(randInt));
+	const int RandInt = FMath::RandRange(0,TargetActors.Num()-1);
+	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString::FromInt(RandInt));
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString(TargetActors[randInt]->GetActorLocation().ToString()));
-	GetWorld()->SpawnActor<AActor>(GeneratedBP->GeneratedClass, TargetActors[randInt]->GetActorLocation(), TargetActors[randInt]->GetActorRotation(), SpawnParams); //Cast blueprint
-	((ATargetActor*)TargetActors[randInt])->bHasItem = true;
+	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString(TargetActors[RandInt]->GetActorLocation().ToString()));
+	GetWorld()->SpawnActor<AActor>(GeneratedBP->GeneratedClass, TargetActors[RandInt]->GetActorLocation(), TargetActors[RandInt]->GetActorRotation(), SpawnParams); //Cast blueprint
+	static_cast<ATargetActor*>(TargetActors[RandInt])->bHasItem = true;
 }
 
 bool AProjet2GameMode::CheckAvailableSpot()
@@ -46,7 +46,7 @@ bool AProjet2GameMode::CheckAvailableSpot()
 	{
 		if(TargetActors[i]->IsA(ATargetActor::StaticClass()))
 		{
-			if(((ATargetActor*)TargetActors[i])->bHasItem == false)
+			if(static_cast<ATargetActor*>(TargetActors[i])->bHasItem == false)
 			{
 				return true;
 			}

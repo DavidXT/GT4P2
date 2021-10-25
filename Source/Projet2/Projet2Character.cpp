@@ -104,16 +104,17 @@ void AProjet2Character::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+//Function to pick Item with player
 void AProjet2Character::PickItem()
 {
 	if(CurrentItem != nullptr)
 	{
 		CurrentItem->PickItem(this);
 		bIsHoldingItem = true;
-		//Mesh1E->PlayAnimation(animPickUp, true);
 	}
 }
 
+//Function to drop Item with player
 void AProjet2Character::DropItem()
 {
 	if(CurrentItem != nullptr)
