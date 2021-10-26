@@ -34,6 +34,9 @@ class PROJET2_API AMyAIController1 : public AAIController
 
 	UPROPERTY(EditDefaultsOnly, Category = AI)
 	FName BlackboardPosition ;
+
+	UPROPERTY(EditDefaultsOnly, Category = AI)
+	FName BlackboardSpawn ;
 		
 	TArray<AActor*> BotTargetPoints;
 
@@ -63,4 +66,5 @@ class PROJET2_API AMyAIController1 : public AAIController
 
 	void SetItemPosition(FVector ItemPosition);
 	void SetNotSeenTarget();
+	void SetSpawn();
 };

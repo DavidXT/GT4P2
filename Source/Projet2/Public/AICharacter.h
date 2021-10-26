@@ -41,12 +41,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	bool bHolding = false;
-
 	AActor* Spawn;
 	
 	bool bItemOnTarget = false;
 	bool bAIVisible = false;
 	float LastSeenTime;
+	float Speed;
 	float TimeOut = 3.0f;
 	
 protected:

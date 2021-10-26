@@ -18,6 +18,7 @@ AMyAIController1::AMyAIController1()
 	LocationToGoKey = "LocationToGo";
 	BlackboardKey = "Target";
 	BlackboardPosition = "ItemPosition";
+	BlackboardSpawn = "bReturnSpawn";
  
 }
  
@@ -54,6 +55,7 @@ void AMyAIController1::SetSeenTarget(APawn* InPawn)
 	{
 		AIChar->bAIVisible = true;
 		BlackboardComp->SetValueAsVector(BlackboardKey, InPawn->GetActorLocation());
+		//BlackboardComp->SetValueAsBool(BlackboardPosition, AIChar->bItemOnTarget = true);
 	}
 }
 
@@ -73,3 +75,12 @@ void AMyAIController1::SetNotSeenTarget()
 		BlackboardComp->ClearValue("Target");
 	}
 }
+
+void AMyAIController1::SetSpawn()
+{
+	if(BehaviorComp)
+	{
+		BlackboardComp->SetValueAsBool(BlackboardSpawn, true );
+	}
+}
+

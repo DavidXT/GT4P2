@@ -3,12 +3,13 @@
 
 #include "AICharacter.h"
 #include "MyAIController1.h"
+#include "GameFramework/CharacterMovementComponent.h"
 // Sets default values
 AAICharacter::AAICharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 	//Initializing the pawn sensing component
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 	//Set the peripheral vision angle to 90 degrees
@@ -76,6 +77,7 @@ void AAICharacter::Pick()
 		if(CurrentItem != nullptr)
 		{
 			CurrentItem->PickItem(this);
+			GetCharacterMovement()->MaxWalkSpeed = 300;
 			bHolding = true;
 		}
 	}
@@ -88,6 +90,7 @@ void AAICharacter::Drop()
 		if(CurrentItem != nullptr)
 		{
 			CurrentItem->DropItem();
+			GetCharacterMovement()->MaxWalkSpeed = 600;
 			bHolding = false;
 		}
 	}

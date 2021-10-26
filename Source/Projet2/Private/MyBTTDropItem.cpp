@@ -23,6 +23,7 @@ EBTNodeResult::Type UMyBTTDropItem::ExecuteTask(UBehaviorTreeComponent & OwnerCo
 						AICon->AIChar->CurrentItem->SetActorLocation(AICon->CurrentPoint->GetActorLocation());
 						AICon->AIChar->bItemOnTarget = true;
 						BlackboardComp->SetValueAsObject("LocationToGo", AICon->AIChar->Spawn);
+						AICon->SetSpawn();
 					}
 					return EBTNodeResult::Succeeded;
 				}
