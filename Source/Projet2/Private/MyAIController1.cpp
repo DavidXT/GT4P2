@@ -19,7 +19,8 @@ AMyAIController1::AMyAIController1()
 	BlackboardKey = "Target";
 	BlackboardPosition = "ItemPosition";
 	BlackboardSpawn = "bReturnSpawn";
- 
+	BlackboardReturnPick = "bPickItem";
+	BlackboardCanPick = "bCanPick";
 }
  
 void AMyAIController1::OnPossess(APawn* InPawn)
@@ -73,6 +74,10 @@ void AMyAIController1::SetNotSeenTarget()
 	{
 		AIChar->bAIVisible = false;
 		BlackboardComp->ClearValue("Target");
+		if (AIChar->bItemOnTarget == false)
+		{
+			BlackboardComp->SetValueAsBool("bPickItem", true);
+		}
 	}
 }
 

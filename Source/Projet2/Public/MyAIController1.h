@@ -37,6 +37,12 @@ class PROJET2_API AMyAIController1 : public AAIController
 
 	UPROPERTY(EditDefaultsOnly, Category = AI)
 	FName BlackboardSpawn ;
+
+	UPROPERTY(EditDefaultsOnly, Category = AI)
+	FName BlackboardReturnPick;
+
+	UPROPERTY(EditDefaultsOnly, Category = AI)
+	FName BlackboardCanPick;
 		
 	TArray<AActor*> BotTargetPoints;
 

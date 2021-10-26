@@ -13,6 +13,7 @@ EBTNodeResult::Type UMyBTTPickItem::ExecuteTask(UBehaviorTreeComponent & OwnerCo
 		if(AICon->AIChar)
 		{
 			AICon->AIChar->Pick();
+			AICon->GetBlackboardComp()->ClearValue("bPickItem");
 			return EBTNodeResult::Succeeded;
 		}
 	}
