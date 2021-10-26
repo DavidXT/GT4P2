@@ -38,6 +38,7 @@ public:
 
 	void Pick();
 	void Drop();
+	void ReturnItem();
 
 	UPROPERTY(VisibleAnywhere)
 	bool bHolding = false;
@@ -46,7 +47,6 @@ public:
 	bool bItemOnTarget = false;
 	bool bAIVisible = false;
 	float LastSeenTime;
-	float Speed;
 	float TimeOut = 3.0f;
 	
 protected:
