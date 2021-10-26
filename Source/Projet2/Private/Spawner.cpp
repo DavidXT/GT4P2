@@ -29,15 +29,23 @@ void ASpawner::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if(TimeBeforeSpawn <= 0)
 	{
-		if(NbIA <= MaxNbIA)
+		if(NbIA < MaxNbIA)
 		{
 			SpawnIA();
-			TimeBeforeSpawn = FMath::RandRange(0,10);
+			TimeBeforeSpawn = FMath::RandRange(3,10);
 			NbIA++;
 		}
 	}else
 	{
-		TimeBeforeSpawn -= DeltaTime;
+		if(NbIA == 0)
+		{
+			SpawnIA();
+			TimeBeforeSpawn = FMath::RandRange(3,10);
+			NbIA++;
+		}else
+		{
+			TimeBeforeSpawn -= DeltaTime;
+		}
 	}
 
 }
@@ -85,6 +93,13 @@ void ASpawner::SpawnIA()
 					static_cast<AAICharacter*>(IaActor)->Spawn = this;
 					static_cast<AAICharacter*>(IaActor)->bHolding = true;
 				}
+			}
+		}else{
+			if(IaActor->IsA(AAICharacter::StaticClass()))
+			{
+				static_cast<AAICharacter*>(IaActor)->GetCharacterMovement()->MaxWalkSpeed = 600;
+				static_cast<AAICharacter*>(IaActor)->Spawn = this;
+				static_cast<AAICharacter*>(IaActor)->bHolding = false;
 			}
 		}
 	}

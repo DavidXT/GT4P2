@@ -26,7 +26,7 @@ public:
 
 	int NbIA;
 
-	int MaxNbIA = 1;
+	int MaxNbIA = 3;
 
 	AProjet2GameMode* PGameMode;
 	
