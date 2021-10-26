@@ -16,12 +16,11 @@ AItem::AItem()
 	
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Mesh"));
 	Mesh->SetupAttachment(RootComponent);
+	Mesh->SetRelativeScale3D(FVector(0.25f,0.25f,0.25f));
 	RootComponent = Mesh;
 	
 	Collider = CreateDefaultSubobject<USphereComponent>(FName("Collider"));
 	Collider->SetupAttachment(Mesh);
-
-	FoodValue = 1;
 	
 	bHolding = false;
 	bGravity = true;
@@ -34,6 +33,15 @@ void AItem::BeginPlay()
 	Super::BeginPlay();
 	Collider->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnBeginOverlap);
 	Collider->OnComponentEndOverlap.AddDynamic(this, &AItem::OnEndOverlap);
+	int randValue = FMath::RandRange(0,10);
+	if(randValue <= 1)
+	{
+		FoodValue = 2;
+		Mesh->SetRelativeScale3D(FVector(0.5f,0.5f,0.5f));
+	}else
+	{
+		FoodValue = 1;
+	}
 }
 
 void AItem::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
