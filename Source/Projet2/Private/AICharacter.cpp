@@ -43,7 +43,6 @@ void AAICharacter::Tick(float DeltaTime)
 	{
 		if((GetWorld()->TimeSeconds - LastSeenTime) > TimeOut)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Je te vois PAS"));
 			AIController->SetNotSeenTarget();
 		}
 	}
@@ -65,7 +64,6 @@ void AAICharacter::OnSeePlayer(APawn* InPawn)
 	{
 		AIController->StopMovement();
 		LastSeenTime = GetWorld()->GetTimeSeconds();
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Je te vois"));
 		AIController->SetSeenTarget(InPawn);
 	}
 }
@@ -85,8 +83,6 @@ void AAICharacter::Pick()
 
 void AAICharacter::Drop()
 {
-	AMyAIController1* AIController = Cast<AMyAIController1>(GetController());
-
 	if(bHolding)
 	{
 		if(CurrentItem != nullptr)
@@ -104,17 +100,14 @@ void AAICharacter::ReturnItem()
 	UBlackboardComponent* BlackboardComp = AIController->GetBlackboardComp();
 
 	float Distance = GetDistanceTo(CurrentItem);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Distance: %f"), Distance));
-
+	
 	if (Distance <= 1500.0f)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Je return item"));
 		BlackboardComp->SetValueAsObject("LocationToGo", CurrentItem);
 		BlackboardComp->SetValueAsBool("bCanPick", true);
 	}
 	else
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Je return spawn"));
 		BlackboardComp->SetValueAsObject("LocationToGo", Spawn);
 		BlackboardComp->SetValueAsBool("bCanPick", false);
 		Destroy();

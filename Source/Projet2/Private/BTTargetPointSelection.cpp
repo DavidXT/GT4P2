@@ -17,8 +17,7 @@ EBTNodeResult::Type UBTTargetPointSelection::ExecuteTask(UBehaviorTreeComponent 
 	{
        if(AICon->CurrentNbMove <= AICon->NbMoveMax)
        {
-       	UBlackboardComponent* BlackboardComp = AICon->GetBlackboardComp();
-       	ATargetActor* CurrentPoint = Cast<ATargetActor>(BlackboardComp->GetValueAsObject("LocationToGo"));
+       	ATargetActor* CurrentPoint = Cast<ATargetActor>(AICon->GetBlackboardComp()->GetValueAsObject("LocationToGo"));
  
        	TArray<AActor*> AvailableTargetPoints = AICon->GetAvailableTargetPoints();
        
@@ -37,7 +36,7 @@ EBTNodeResult::Type UBTTargetPointSelection::ExecuteTask(UBehaviorTreeComponent 
        	} while (CurrentPoint == NextTargetPoint);
  
        	//Update the next location in the Blackboard so the bot can move to the next Blackboard value
-       	BlackboardComp->SetValueAsObject("LocationToGo", NextTargetPoint);
+       	AICon->GetBlackboardComp()->SetValueAsObject("LocationToGo", NextTargetPoint);
        	AICon->CurrentPoint = NextTargetPoint;
        	AICon->CurrentNbMove++;
        	//At this point, the task has been successfully completed
@@ -46,9 +45,11 @@ EBTNodeResult::Type UBTTargetPointSelection::ExecuteTask(UBehaviorTreeComponent 
 		else
        {
        	UBlackboardComponent* BlackboardComp = AICon->GetBlackboardComp();
-       	BlackboardComp->SetValueAsBool("bReturnSpawn", true);
+			
+			//Update the next location in the Blackboard so the bot can move to the next Blackboard value
+       	AICon->GetBlackboardComp()->SetValueAsBool("bReturnSpawn", true);
        	//Update the next location in the Blackboard so the bot can move to the next Blackboard value
-       	BlackboardComp->SetValueAsObject("LocationToGo", AICon->AIChar->Spawn);
+       AICon->GetBlackboardComp()->SetValueAsObject("LocationToGo", AICon->AIChar->Spawn);
        }
 	}
 	return EBTNodeResult::Failed;
