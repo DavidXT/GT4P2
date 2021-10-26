@@ -19,7 +19,6 @@ ASpawner::ASpawner()
 void ASpawner::BeginPlay()
 {
 	Super::BeginPlay();
-	TimeBeforeSpawn = 0;
 	PGameMode = GetWorld()->GetAuthGameMode<AProjet2GameMode>();
 }
 
@@ -27,27 +26,33 @@ void ASpawner::BeginPlay()
 void ASpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if(TimeBeforeSpawn <= 0)
+
+	if(NbIA <= 0)
+	{
+		SpawnIA();
+		TimeBeforeSpawn = FMath::RandRange(1,5);
+		NbIA++;
+	}else
 	{
 		if(NbIA < MaxNbIA)
 		{
-			SpawnIA();
-			TimeBeforeSpawn = FMath::RandRange(3,10);
-			NbIA++;
-		}
-	}else
-	{
-		if(NbIA == 0)
-		{
-			SpawnIA();
-			TimeBeforeSpawn = FMath::RandRange(3,10);
-			NbIA++;
-		}else
-		{
-			TimeBeforeSpawn -= DeltaTime;
+			if(TimeBeforeSpawn <= 0)
+			{
+				SpawnIA();
+				NbIA++;
+				if(NbIA == 2)
+				{
+					TimeBeforeSpawn = 60;
+				}else
+				{
+					TimeBeforeSpawn = FMath::RandRange(1,5);
+				}
+			}else
+			{
+				TimeBeforeSpawn -= DeltaTime;
+			}
 		}
 	}
-
 }
 
 
