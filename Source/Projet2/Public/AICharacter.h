@@ -28,6 +28,15 @@ public:
 	class UPawnSensingComponent* PawnSensingComp;
 
 	UPROPERTY(EditAnywhere)
+	class UMaterial* Material1;
+
+	UPROPERTY(EditAnywhere)
+	class UMaterial* Material2;
+
+	UPROPERTY(EditAnywhere)
+	class UMaterial* Material3;
+
+	UPROPERTY(EditAnywhere)
 	USceneComponent* FP_FistLocation;
 	
 	// Sets default values for this character's properties

@@ -18,6 +18,9 @@ AAICharacter::AAICharacter()
 	//Create socket to getItem
 	FP_FistLocation = CreateDefaultSubobject<USceneComponent>(TEXT("FistLocation"));
 	FP_FistLocation->SetupAttachment(GetCapsuleComponent());
+	Material1 = CreateDefaultSubobject<UMaterial>(TEXT("Material1"));
+	Material2 = CreateDefaultSubobject<UMaterial>(TEXT("Material2"));
+	Material3 = CreateDefaultSubobject<UMaterial>(TEXT("Material3"));
 }
 
 // Called when the game starts or when spawned
@@ -29,6 +32,22 @@ void AAICharacter::BeginPlay()
 	if (PawnSensingComp)
 	{
 		PawnSensingComp->OnSeePawn.AddDynamic(this, &AAICharacter::OnSeePlayer);
+	}
+
+	const int RandSkin = FMath::RandRange(0,2);
+	switch (RandSkin)
+	{
+	case 0:
+		GetMesh()->SetMaterial(0, Material1);
+		break;
+	case 1:
+		GetMesh()->SetMaterial(0, Material2);
+		break;
+	case 2:
+		GetMesh()->SetMaterial(0, Material3);
+		break;
+	default:
+		break;
 	}
 }
 
