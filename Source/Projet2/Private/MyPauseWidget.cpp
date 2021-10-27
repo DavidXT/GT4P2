@@ -14,5 +14,12 @@ bool UMyPauseWidget::Initialize()
 void UMyPauseWidget::OnClickResume()
 {
 	UGameplayStatics::SetGamePaused(GetWorld(), false);
-	//this->SetVisibility(ESlateVisibility::Hidden);
+	
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	FInputModeGameOnly const InputModeData;
+	PlayerController->SetInputMode(InputModeData);
+	PlayerController->SetIgnoreMoveInput(false);
+	PlayerController->bShowMouseCursor = false;
+	
+	this->SetVisibility(ESlateVisibility::Hidden);
 }
