@@ -6,6 +6,8 @@
 #include "Engine/GameInstance.h"
 #include "MyUserWidget.h"
 #include "EndGameWidget.h"
+#include "MainMenuWidget.h"
+#include "MyPauseWidget.h"
 #include "MyGameInstance.generated.h"
 
 /**
@@ -23,7 +25,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ShowWidget();
 	
+	UFUNCTION(BlueprintCallable)
+	void ShowWidgetMainMenu();
 
+	UFUNCTION(BlueprintCallable)
+	void ClickResume();
+	
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateFoodBar(float NewPercent);
@@ -32,10 +39,14 @@ public:
 	void ShowWidgetEndGame(bool GameState);
 
 	UMyUserWidget* MyUserWidget;
-
+	UMainMenuWidget* MainMenuWidget;
+	UMyPauseWidget* PauseWidget;
 	UEndGameWidget* EndGameWidget;
+	
 
 private:
 	TSubclassOf<class UMyUserWidget> MyWidget;
 	TSubclassOf<class UEndGameWidget> EndScreen;
+	TSubclassOf<class UMainMenuWidget> MainMenuScreen;
+	TSubclassOf<class UMyPauseWidget> MPause;
 };

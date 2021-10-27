@@ -10,6 +10,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Kismet/GameplayStatics.h"
 //#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
 
@@ -73,6 +74,8 @@ void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerI
 
 	InputComponent->BindAction("ZoomIn", IE_Pressed, this, &AProjet2Character::ZoomIn);
 	InputComponent->BindAction("ZoomOut", IE_Pressed, this, &AProjet2Character::ZoomOut);
+
+	InputComponent->BindAction("Pause", IE_Pressed, this, &AProjet2Character::Pause).bExecuteWhenPaused = true; 
 	
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
@@ -85,6 +88,7 @@ void AProjet2Character::BeginPlay()
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this,&AProjet2Character::OnBeginOverlap);
 	MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 	MyGameInstance->ShowWidget();
+	//MyGameInstance->ShowWidgetMainMenu();
 }
 
 void AProjet2Character::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
@@ -185,3 +189,8 @@ void AProjet2Character::ZoomOut()
 	}
 }
 
+void AProjet2Character::Pause()
+{
+	UGameplayStatics::SetGamePaused(GetWorld(), true);
+	MyGameInstance->ClickResume();
+}

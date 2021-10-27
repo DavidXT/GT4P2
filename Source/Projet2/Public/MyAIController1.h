@@ -56,11 +56,12 @@ class PROJET2_API AMyAIController1 : public AAIController
 	/*----------Constructor----------*/
 	AMyAIController1();
 
+	/*Reference Actor*/
 	ATargetActor* CurrentPoint;
 	AAICharacter* AIChar;
 
+	/*Variable Number Move IA */
 	int CurrentNbMove = 0;
-
 	int NbMoveMax = 3;
 	
 	FORCEINLINE UBlackboardComponent* GetBlackboardComp() const { return BlackboardComp; }

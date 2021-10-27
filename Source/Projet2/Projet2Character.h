@@ -86,6 +86,10 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = Camera)
 	void ZoomOut();
 
+	
+	UFUNCTION(BlueprintCallable, Category = Menu)
+	void Pause();
+
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

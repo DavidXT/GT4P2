@@ -7,7 +7,6 @@
 EBTNodeResult::Type UMyBTTDropItem::ExecuteTask(UBehaviorTreeComponent & OwnerComp, uint8 * NodeMemory)
 {
 	AMyAIController1* AICon = Cast<AMyAIController1>(OwnerComp.GetAIOwner());
-	UBlackboardComponent* BlackboardComp = AICon->GetBlackboardComp();
 
 	if(AICon)
 	{
@@ -22,7 +21,7 @@ EBTNodeResult::Type UMyBTTDropItem::ExecuteTask(UBehaviorTreeComponent & OwnerCo
 						AICon->AIChar->Drop();
 						AICon->AIChar->CurrentItem->SetActorLocation(AICon->CurrentPoint->GetActorLocation());
 						AICon->AIChar->bItemOnTarget = true;
-						BlackboardComp->SetValueAsObject("LocationToGo", AICon->AIChar->Spawn);
+						AICon->GetBlackboardComp()->SetValueAsObject("LocationToGo", AICon->AIChar->Spawn);
 						AICon->SetSpawn();
 					}
 					return EBTNodeResult::Succeeded;

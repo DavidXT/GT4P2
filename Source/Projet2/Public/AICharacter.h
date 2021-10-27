@@ -38,21 +38,21 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	USceneComponent* FP_FistLocation;
-	
-	// Sets default values for this character's properties
-	AAICharacter();
 
 	UPROPERTY(VisibleAnywhere)
 	AItem* CurrentItem;
 
+	UPROPERTY(VisibleAnywhere)
+	bool bHolding = false;
+	
+	// Sets default values for this character's properties
+	AAICharacter();
+
 	void Pick();
 	void Drop();
 	void ReturnItem();
-
-	UPROPERTY(VisibleAnywhere)
-	bool bHolding = false;
-	AActor* Spawn;
 	
+	AActor* Spawn;
 	bool bItemOnTarget = false;
 	bool bAIVisible = false;
 	float LastSeenTime;

@@ -56,7 +56,6 @@ void AMyAIController1::SetSeenTarget(APawn* InPawn)
 	{
 		AIChar->bAIVisible = true;
 		BlackboardComp->SetValueAsVector(BlackboardKey, InPawn->GetActorLocation());
-		//BlackboardComp->SetValueAsBool(BlackboardPosition, AIChar->bItemOnTarget = true);
 	}
 }
 
@@ -74,6 +73,7 @@ void AMyAIController1::SetNotSeenTarget()
 	{
 		AIChar->bAIVisible = false;
 		BlackboardComp->ClearValue("Target");
+		
 		if (AIChar->bItemOnTarget == false)
 		{
 			BlackboardComp->SetValueAsBool("bPickItem", true);
