@@ -20,23 +20,14 @@ void AProjet2GameMode::BeginPlay()
 {
 	Super::BeginPlay();
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATargetActor::StaticClass(), TargetActors);
-	UObject* SpawnedItem = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprint/BP_Item")));
-	const UBlueprint* GeneratedBP = Cast<UBlueprint>(SpawnedItem);
-	if (!SpawnedItem)
-	{
-		return;
-	}
-	UClass* SpawnClass = SpawnedItem->StaticClass();
-	if (SpawnClass == nullptr)
+	if (Food == nullptr)
 	{
 		return;
 	}
 	const int RandInt = FMath::RandRange(0,TargetActors.Num()-1);
-	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString::FromInt(RandInt));
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString(TargetActors[RandInt]->GetActorLocation().ToString()));
-	GetWorld()->SpawnActor<AActor>(GeneratedBP->GeneratedClass, TargetActors[RandInt]->GetActorLocation(), TargetActors[RandInt]->GetActorRotation(), SpawnParams); //Cast blueprint
+	GetWorld()->SpawnActor<AActor>(Food, TargetActors[RandInt]->GetActorLocation(), TargetActors[RandInt]->GetActorRotation(), SpawnParams); //Cast blueprint
 	static_cast<ATargetActor*>(TargetActors[RandInt])->bHasItem = true;
 }
 

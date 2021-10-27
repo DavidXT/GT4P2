@@ -57,36 +57,22 @@ void ASpawner::Tick(float DeltaTime)
 
 void ASpawner::SpawnIA()
 {
-	UObject* SpawnedItem = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprint/BP_Item")));
-	const UBlueprint* GeneratedBPItem = Cast<UBlueprint>(SpawnedItem);
-	if (!SpawnedItem)
+	if (AISpawn == NULL)
 	{
 		return;
 	}
-	UClass* SpawnClassItem = SpawnedItem->StaticClass();
-	if (SpawnClassItem == NULL)
-	{
-		return;
-	}
-	UObject* SpawnedIA = Cast<UObject>(StaticLoadObject(UObject::StaticClass(), NULL, TEXT("/Game/Blueprint/BP_AIChar")));
-	const UBlueprint* GeneratedBPIA = Cast<UBlueprint>(SpawnedIA);
-	if (!SpawnedItem)
-	{
-		return;
-	}
-	UClass* SpawnClassIA = SpawnedIA->StaticClass();
-	if (SpawnClassIA == NULL)
+	if (Food == NULL)
 	{
 		return;
 	}
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	AActor* IaActor = GetWorld()->SpawnActor<AActor>(GeneratedBPIA->GeneratedClass, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
+	AActor* IaActor = GetWorld()->SpawnActor<AActor>(AISpawn, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
 	if(PGameMode)
 	{
 		if(PGameMode->CheckAvailableSpot())
 		{
-			AActor* Item = GetWorld()->SpawnActor<AActor>(GeneratedBPItem->GeneratedClass, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
+			AActor* Item = GetWorld()->SpawnActor<AActor>(Food, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
 			if(Item->IsA(AItem::StaticClass()))
 			{
 				static_cast<AItem*>(Item)->PickItem(IaActor);

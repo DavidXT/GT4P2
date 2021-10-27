@@ -29,6 +29,12 @@ public:
 	int MaxNbIA = 3;
 
 	AProjet2GameMode* PGameMode;
+
+	UPROPERTY(EditAnywhere)
+	class UClass* AISpawn;
+
+	UPROPERTY(EditAnywhere)
+	class UClass* Food;
 	
 	UFUNCTION()
 	void SpawnIA();

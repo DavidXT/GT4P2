@@ -18,6 +18,9 @@ public:
 	UPROPERTY(EditAnywhere, Category=Target)
 	TArray<AActor*> TargetActors;
 
+	UPROPERTY(EditAnywhere)
+	class UClass* Food;
+	
 	UFUNCTION()
 	bool CheckAvailableSpot();
 protected:
