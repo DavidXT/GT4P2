@@ -7,10 +7,10 @@
 
 bool UMainMenuWidget::Initialize()
 {
-	//Super::Initialize();
+	Super::Initialize();
 	StartButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnClickStart);
-	OptionsButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnClickStart);
-	QuitButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnClickStart);
+	OptionsButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnClickOptions);
+	QuitButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnClickQuit);
 	return true;
 }
 
@@ -28,4 +28,3 @@ void UMainMenuWidget::OnClickQuit()
 {
 	UKismetSystemLibrary::QuitGame(this, nullptr, EQuitPreference::Quit, false);
 }
-

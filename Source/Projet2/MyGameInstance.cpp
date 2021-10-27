@@ -17,6 +17,10 @@ UMyGameInstance::UMyGameInstance(const FObjectInitializer& ObjectInitializer) {
 		
 	EndScreen = WidgetEndGame.Class;
 	
+	static ConstructorHelpers::FClassFinder<UMainMenuWidget> WidgetMainMenu(TEXT("/Game/Blueprint/MainMenuWidget"));
+	if (!ensure(WidgetMainMenu.Class != nullptr)) return;
+
+	MainMenuScreen = WidgetMainMenu.Class;
 }
 
 void UMyGameInstance::Init() {
@@ -31,7 +35,7 @@ void UMyGameInstance::ShowWidget() {
 	MyUserWidget = MyHUD;
 	MyUserWidget->AddToViewport();
 
-	APlayerController* PlayerController = GetFirstLocalPlayerController();;
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
 	FInputModeGameOnly const InputModeData;
 	
 	PlayerController->SetInputMode(InputModeData);
@@ -52,9 +56,25 @@ void UMyGameInstance::ShowWidgetEndGame(bool GameState)
 	EndGameWidget->ShowEndScreen(GameState);
 	EndGameWidget->AddToViewport();
 
-	APlayerController* PlayerController = GetFirstLocalPlayerController();;
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
 	FInputModeUIOnly InputModeData;
 	InputModeData.SetWidgetToFocus(EndGameWidget->TakeWidget());
+	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	PlayerController->SetIgnoreMoveInput(true);
+	PlayerController->SetInputMode(InputModeData);
+	PlayerController->bShowMouseCursor = true;
+}
+
+void UMyGameInstance::ShowWidgetMainMenu()
+{
+	UMainMenuWidget* MyHUD = CreateWidget<UMainMenuWidget>(this, MainMenuScreen);
+	MainMenuWidget = MyHUD;
+	MainMenuWidget->AddToViewport();
+
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetWidgetToFocus(MainMenuWidget->TakeWidget());
 	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 
 	PlayerController->SetIgnoreMoveInput(true);

@@ -4,9 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Components/TextBlock.h"
 #include "Components/Button.h"
-#include "Styling/SlateColor.h"
 #include "MainMenuWidget.generated.h"
 
 /**
@@ -18,6 +16,7 @@ class PROJET2_API UMainMenuWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
+
 	virtual bool Initialize() override;
 
 	UPROPERTY(meta = (BindWidget))
