@@ -21,6 +21,10 @@ AAICharacter::AAICharacter()
 	Material1 = CreateDefaultSubobject<UMaterial>(TEXT("Material1"));
 	Material2 = CreateDefaultSubobject<UMaterial>(TEXT("Material2"));
 	Material3 = CreateDefaultSubobject<UMaterial>(TEXT("Material3"));
+
+	MeshFemale = CreateDefaultSubobject<USkeletalMesh>(TEXT("MeshFemale"));
+	MeshMale = CreateDefaultSubobject<USkeletalMesh>(TEXT("MeshMale"));
+	
 }
 
 // Called when the game starts or when spawned
@@ -33,7 +37,21 @@ void AAICharacter::BeginPlay()
 	{
 		PawnSensingComp->OnSeePawn.AddDynamic(this, &AAICharacter::OnSeePlayer);
 	}
-
+	const int RandMesh = FMath::RandRange(0,1);
+	switch (RandMesh)
+	{
+	case 0:
+		GetMesh()->SetSkeletalMesh(MeshMale);
+		GetMesh()->SetAnimInstanceClass(AnimMale);
+		break;
+	case 1:
+		GetMesh()->SetSkeletalMesh(MeshFemale);
+		GetMesh()->SetAnimInstanceClass(AnimFemale);
+		break;
+	default:
+		break;
+	}
+	
 	const int RandSkin = FMath::RandRange(0,2);
 	switch (RandSkin)
 	{

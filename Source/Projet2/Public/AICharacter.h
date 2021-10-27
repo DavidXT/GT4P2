@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "Perception/PawnSensingComponent.h"
 #include "Projet2/Item.h"
+#include "Engine/SkeletalMesh.h"
 #include "AICharacter.generated.h"
 
 UCLASS()
@@ -35,6 +36,18 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class UMaterial* Material3;
+
+	UPROPERTY(EditAnywhere)
+	class USkeletalMesh* MeshFemale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class UClass* AnimFemale;
+
+	UPROPERTY(EditAnywhere)
+	class USkeletalMesh* MeshMale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class UClass* AnimMale;
 
 	UPROPERTY(EditAnywhere)
 	USceneComponent* FP_FistLocation;
