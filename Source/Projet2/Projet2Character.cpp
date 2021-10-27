@@ -52,6 +52,9 @@ AProjet2Character::AProjet2Character()
 	FP_FistLocation = CreateDefaultSubobject<USceneComponent>(TEXT("FistLocation"));
 	FP_FistLocation->SetupAttachment(GetCapsuleComponent());
 
+	MeshPersoFemale = CreateDefaultSubobject<USkeletalMesh>(TEXT("MeshFemale"));
+	MeshPersoGoblin = CreateDefaultSubobject<USkeletalMesh>(TEXT("MeshMale"));
+
 	bIsHoldingItem = false;
 }
 
@@ -193,4 +196,16 @@ void AProjet2Character::Pause()
 {
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
 	MyGameInstance->ClickResume();
+}
+
+void AProjet2Character::TwoPerso()
+{
+	GetMesh()->SetSkeletalMesh(MeshPersoGoblin);
+	GetMesh()->SetAnimInstanceClass(AnimPersoGoblin);
+}
+
+void AProjet2Character::ThirdPerso()
+{
+	GetMesh()->SetSkeletalMesh(MeshPersoFemale);
+	GetMesh()->SetAnimInstanceClass(AnimPersoFemale);
 }

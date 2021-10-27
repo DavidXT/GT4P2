@@ -44,9 +44,12 @@ class AProjet2Character : public ACharacter
 public:
 	AProjet2Character();
 
-	UPROPERTY (VisibleDefaultsOnly, Category = Mesh)
-	USkeletalMeshComponent* Mesh1E;
 
+	UFUNCTION()
+	void TwoPerso();
+	UFUNCTION()
+	void ThirdPerso();
+	
 	UPROPERTY(EditAnywhere)
 	USceneComponent* FP_FistLocation;
 	
@@ -65,6 +68,20 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
+
+
+	UPROPERTY(EditAnywhere)
+	class USkeletalMesh* MeshPersoFemale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Mesh)
+	class UClass* AnimPersoFemale;
+
+	UPROPERTY(EditAnywhere)
+	class USkeletalMesh* MeshPersoGoblin;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Mesh)
+	class UClass* AnimPersoGoblin;
+	
 	
 protected:
 
@@ -79,13 +96,12 @@ protected:
 	void PickItem();
 	UFUNCTION()
 	void DropItem();
-
+	
 	UFUNCTION(BlueprintCallable, Category = Camera)
 	void ZoomIn();
 
 	UFUNCTION(BlueprintCallable, Category = Camera)
 	void ZoomOut();
-
 	
 	UFUNCTION(BlueprintCallable, Category = Menu)
 	void Pause();

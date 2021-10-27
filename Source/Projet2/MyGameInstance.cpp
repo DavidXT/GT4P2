@@ -26,6 +26,11 @@ UMyGameInstance::UMyGameInstance(const FObjectInitializer& ObjectInitializer) {
 	if (!ensure (PauseGame.Class != nullptr)) return;
 		
 	MPause = PauseGame.Class;
+
+	/*static ConstructorHelpers::FClassFinder<UMyCharacterChoiceWidget> CheckPerso(TEXT("/Game/Blueprint/CharacterChoice"));
+	if (!ensure (CheckPerso.Class != nullptr)) return;
+		
+	ChoicePerso = CheckPerso.Class;*/
 }
 
 void UMyGameInstance::Init() {
@@ -103,3 +108,20 @@ void UMyGameInstance::ClickResume()
 	PlayerController->SetInputMode(InputModeData);
 	PlayerController->bShowMouseCursor = true;
 }
+
+/*void UMyGameInstance::CheckPerso()
+{
+	UMyCharacterChoiceWidget* MyHUD = CreateWidget<UMyCharacterChoiceWidget>(this, ChoicePerso);
+	ChoicePersoWidget = MyHUD;
+	ChoicePersoWidget->AddToViewport();
+
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetWidgetToFocus(MainMenuWidget->TakeWidget());
+	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	PlayerController->SetIgnoreMoveInput(true);
+	PlayerController->SetInputMode(InputModeData);
+	PlayerController->bShowMouseCursor = true;
+}*/
+

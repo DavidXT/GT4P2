@@ -7,6 +7,7 @@
 #include "MyUserWidget.h"
 #include "EndGameWidget.h"
 #include "MainMenuWidget.h"
+//#include "MyCharacterChoiceWidget.h"
 #include "MyPauseWidget.h"
 #include "MyGameInstance.generated.h"
 
@@ -30,7 +31,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ClickResume();
-	
+
+	/*UFUNCTION(BlueprintCallable)
+    void CheckPerso();*/
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateFoodBar(float NewPercent);
@@ -42,6 +45,7 @@ public:
 	UMainMenuWidget* MainMenuWidget;
 	UMyPauseWidget* PauseWidget;
 	UEndGameWidget* EndGameWidget;
+//	UMyCharacterChoiceWidget* ChoicePersoWidget;
 	
 
 private:
@@ -49,4 +53,5 @@ private:
 	TSubclassOf<class UEndGameWidget> EndScreen;
 	TSubclassOf<class UMainMenuWidget> MainMenuScreen;
 	TSubclassOf<class UMyPauseWidget> MPause;
+	//TSubclassOf<class UMyCharacterChoiceWidget> ChoicePerso;
 };
