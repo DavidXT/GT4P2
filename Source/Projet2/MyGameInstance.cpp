@@ -21,6 +21,11 @@ UMyGameInstance::UMyGameInstance(const FObjectInitializer& ObjectInitializer) {
 	if (!ensure(WidgetMainMenu.Class != nullptr)) return;
 
 	MainMenuScreen = WidgetMainMenu.Class;
+
+	static ConstructorHelpers::FClassFinder<UMyPauseWidget> PauseGame(TEXT("/Game/Blueprint/MenuPause"));
+	if (!ensure (PauseGame.Class != nullptr)) return;
+		
+	MPause = PauseGame.Class;
 }
 
 void UMyGameInstance::Init() {
@@ -83,3 +88,18 @@ void UMyGameInstance::ShowWidgetMainMenu()
 }
 
 
+void UMyGameInstance::ClickResume()
+{
+	UMyPauseWidget* MyHUD = CreateWidget<UMyPauseWidget>(this, MPause);
+	PauseWidget = MyHUD;
+	PauseWidget->AddToViewport();
+
+	APlayerController* PlayerController = GetFirstLocalPlayerController();;
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetWidgetToFocus(PauseWidget->TakeWidget());
+	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	PlayerController->SetIgnoreMoveInput(true);
+	PlayerController->SetInputMode(InputModeData);
+	PlayerController->bShowMouseCursor = true;
+}
