@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
-#include "Projet2/Projet2Character.h"
 #include "MyCharacterChoiceWidget.generated.h"
 
 /**
@@ -27,8 +26,6 @@ class PROJET2_API UMyCharacterChoiceWidget : public UUserWidget
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* ThirdPersoButton;
-	
-	AProjet2Character* Character;
 	
 	UFUNCTION()
 	void OnClickFirstPerso();

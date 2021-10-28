@@ -16,7 +16,7 @@ bool UMainMenuWidget::Initialize()
 
 void UMainMenuWidget::OnClickStart()
 {
-	UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
+	UGameplayStatics::OpenLevel(this, FName("Game"));
 }
 
 void UMainMenuWidget::OnClickOptions()

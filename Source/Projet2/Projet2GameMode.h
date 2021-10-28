@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "TargetActor.h"
+#include "MyGameInstance.h"
 #include "Projet2GameMode.generated.h"
 
 UCLASS(minimalapi)
@@ -20,11 +21,18 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class UClass* Food;
+
+	UMyGameInstance* MyGameInstance;
 	
+	UPROPERTY(EditAnywhere)
+	bool bIsPlaying;
+
 	UFUNCTION()
 	bool CheckAvailableSpot();
+
 protected:
 	virtual void BeginPlay() override;
+
 };
 
 

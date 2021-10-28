@@ -21,5 +21,5 @@ void UMyPauseWidget::OnClickResume()
 	PlayerController->SetIgnoreMoveInput(false);
 	PlayerController->bShowMouseCursor = false;
 	
-	this->SetVisibility(ESlateVisibility::Hidden);
+	this->RemoveFromViewport();
 }

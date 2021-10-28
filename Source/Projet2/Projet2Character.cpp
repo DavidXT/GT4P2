@@ -90,8 +90,6 @@ void AProjet2Character::BeginPlay()
 	Super::BeginPlay();
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this,&AProjet2Character::OnBeginOverlap);
 	MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	MyGameInstance->ShowWidget();
-	//MyGameInstance->ShowWidgetMainMenu();
 }
 
 void AProjet2Character::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,

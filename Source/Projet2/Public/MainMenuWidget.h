@@ -36,5 +36,4 @@ public:
 
 	UFUNCTION()
 	void OnClickQuit();
-
 };

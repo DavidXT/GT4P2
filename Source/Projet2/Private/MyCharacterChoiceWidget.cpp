@@ -2,6 +2,7 @@
 
 
 #include "MyCharacterChoiceWidget.h"
+#include <Projet2/Projet2Character.h>
 //#include "Kismet/GameplayStatics.h"
 
 bool UMyCharacterChoiceWidget::Initialize()
@@ -20,11 +21,13 @@ void UMyCharacterChoiceWidget::OnClickFirstPerso()
 
 void UMyCharacterChoiceWidget::OnClickTwoPerso()
 {
-	Character->TwoPerso();
-	
+	/*AProjet2Character* character;
+	character->TwoPerso();*/
+
 }
 
 void UMyCharacterChoiceWidget::OnClickThirdPerso()
 {
-	Character->ThirdPerso();
+	/*AProjet2Character* character;
+	character->ThirdPerso();*/
 }
