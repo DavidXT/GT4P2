@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyGameInstance.h"
+#include "GameMode/MyGameInstance.h"
+
 #include "Blueprint/UserWidget.h"
 
 #include "UObject/ConstructorHelpers.h"

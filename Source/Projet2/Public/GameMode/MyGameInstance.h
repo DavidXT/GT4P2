@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "MyUserWidget.h"
-#include "EndGameWidget.h"
-#include "MainMenuWidget.h"
-#include "MyCharacterChoiceWidget.h"
-#include "MyPauseWidget.h"
+#include "UI/MyUserWidget.h"
+#include "UI/EndGameWidget.h"
+#include "UI/MainMenuWidget.h"
+#include "UI/MyCharacterChoiceWidget.h"
+#include "UI/MyPauseWidget.h"
 #include "MyGameInstance.generated.h"
 
 /**

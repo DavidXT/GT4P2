@@ -1,8 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Projet2GameMode.h"
-#include "Projet2Character.h"
-#include "Algo/ForEach.h"
+#include "GameMode/Projet2GameMode.h"
+
+#include "Character/Projet2Character.h"
+
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
 

@@ -1,9 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyGameState.h"
-
-#include "MyGameInstance.h"
+#include "GameMode/MyGameState.h"
+#include "GameMode/MyGameInstance.h"
 
 //Add Score if win show Win Screen
 void AMyGameState::AddScore(float S)

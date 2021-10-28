@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "TargetActor.h"
+#include "Actor/TargetActor.h"
 #include "MyGameInstance.h"
 #include "Projet2GameMode.generated.h"
 
