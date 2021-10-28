@@ -1,10 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyAIController1.h"
-
+#include <Projet2\Public\IA\MyAIController1.h>
 #include "Kismet/GameplayStatics.h"
-#include "Projet2/TargetActor.h"
+#include <Projet2\Public\Actor\TargetActor.h>
 
 
 AMyAIController1::AMyAIController1()

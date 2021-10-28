@@ -6,7 +6,7 @@
 #include "BehaviorTree/BehaviorTree.h"
 #include "GameFramework/Character.h"
 #include "Perception/PawnSensingComponent.h"
-#include "Projet2/Item.h"
+#include <Projet2\Public\Actor\Item.h>
 #include "Engine/SkeletalMesh.h"
 #include "AICharacter.generated.h"
 

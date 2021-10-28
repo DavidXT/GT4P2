@@ -8,7 +8,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
-#include "Projet2/TargetActor.h"
+#include <Projet2\Public\Actor\TargetActor.h>
 #include "MyAIController1.generated.h"
 
 /**
