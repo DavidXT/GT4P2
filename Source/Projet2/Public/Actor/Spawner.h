@@ -27,7 +27,7 @@ public:
 
 	int NbIA;
 
-	float MaxSpeed = 600;
+	float MaxSpeed = 500;
 	int MaxNbIA = 3;
 	
 	bool bLastIA;

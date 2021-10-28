@@ -21,6 +21,7 @@ EBTNodeResult::Type UMyBTTDropFollow::ExecuteTask(UBehaviorTreeComponent & Owner
 				AICon->SetItemPosition(AICon->AIChar->CurrentItem->GetActorLocation());
 				return EBTNodeResult::Succeeded;
 			}
+			return EBTNodeResult::Succeeded;
 		}
 	}
 	return EBTNodeResult::Failed;

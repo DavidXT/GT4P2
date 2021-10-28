@@ -73,7 +73,7 @@ public:
 	bool bItemOnTarget = false;
 	bool bAIVisible = false;
 	float LastSeenTime;
-	float TimeOut = 3.0f;
+	float TimeOut = 1.5f;
 	
 protected:
 	// Called when the game starts or when spawned

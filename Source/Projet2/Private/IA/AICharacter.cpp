@@ -83,7 +83,7 @@ void AAICharacter::Pick()
 		if(CurrentItem != nullptr)
 		{
 			CurrentItem->PickItem(this);
-			GetCharacterMovement()->MaxWalkSpeed = 300;
+			GetCharacterMovement()->MaxWalkSpeed = 250;
 			bHolding = true;
 		}
 	}
@@ -96,7 +96,7 @@ void AAICharacter::Drop()
 		if(CurrentItem != nullptr)
 		{
 			CurrentItem->DropItem();
-			GetCharacterMovement()->MaxWalkSpeed = 600;
+			GetCharacterMovement()->MaxWalkSpeed = 500;
 			bHolding = false;
 		}
 	}
