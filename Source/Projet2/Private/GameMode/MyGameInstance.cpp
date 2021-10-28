@@ -35,18 +35,6 @@ void UMyGameInstance::Init() {
 
 }
 
-void UMyGameInstance::ShowCursor() 
-{
-	APlayerController* PlayerController = GetFirstLocalPlayerController();
-	FInputModeUIOnly InputModeData;
-	InputModeData.SetWidgetToFocus(EndGameWidget->TakeWidget());
-	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-
-	PlayerController->SetIgnoreMoveInput(true);
-	PlayerController->SetInputMode(InputModeData);
-	PlayerController->bShowMouseCursor = true;
-}
-
 //Show ProgressBar and 3D Portrait HUD
 void UMyGameInstance::ShowWidget() {
 
@@ -75,7 +63,15 @@ void UMyGameInstance::ShowWidgetEndGame(bool GameState)
 	EndGameWidget = MyHUD;
 	EndGameWidget->ShowEndScreen(GameState);
 	EndGameWidget->AddToViewport();
-	ShowCursor();
+
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetWidgetToFocus(EndGameWidget->TakeWidget());
+	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	PlayerController->SetIgnoreMoveInput(true);
+	PlayerController->SetInputMode(InputModeData);
+	PlayerController->bShowMouseCursor = true;
 }
 
 void UMyGameInstance::ShowWidgetMainMenu()
@@ -83,7 +79,15 @@ void UMyGameInstance::ShowWidgetMainMenu()
 	UMainMenuWidget* MyHUD = CreateWidget<UMainMenuWidget>(this, MainMenuScreen);
 	MainMenuWidget = MyHUD;
 	MainMenuWidget->AddToViewport();
-	ShowCursor();
+	
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetWidgetToFocus(MainMenuWidget->TakeWidget());
+	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	PlayerController->SetIgnoreMoveInput(true);
+	PlayerController->SetInputMode(InputModeData);
+	PlayerController->bShowMouseCursor = true;
 }
 
 
@@ -92,7 +96,15 @@ void UMyGameInstance::ClickResume()
 	UMyPauseWidget* MyHUD = CreateWidget<UMyPauseWidget>(this, MPause);
 	PauseWidget = MyHUD;
 	PauseWidget->AddToViewport();
-	ShowCursor();
+
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	FInputModeUIOnly InputModeData;
+	InputModeData.SetWidgetToFocus(PauseWidget->TakeWidget());
+	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	PlayerController->SetIgnoreMoveInput(true);
+	PlayerController->SetInputMode(InputModeData);
+	PlayerController->bShowMouseCursor = true;
 }
 
 
