@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyPauseWidget.h"
+#include <Projet2\Public\UI\MyPauseWidget.h>
 #include "Kismet/GameplayStatics.h"
 
 bool UMyPauseWidget::Initialize()

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "EndGameWidget.h"
+#include <Projet2\Public\UI\EndGameWidget.h>
 #include "Kismet/GameplayStatics.h"
 
 bool UEndGameWidget::Initialize()
