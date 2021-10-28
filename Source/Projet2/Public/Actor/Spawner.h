@@ -29,6 +29,8 @@ public:
 	float MaxSpeed = 600;
 	int MaxNbIA = 3;
 	
+	bool bLastIA;
+	
 	AProjet2GameMode* PGameMode;
 
 	UPROPERTY(EditAnywhere)

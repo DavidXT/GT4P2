@@ -43,12 +43,18 @@ void ASpawner::Tick(float DeltaTime)
 				if(NbIA == 2)
 				{
 					TimeBeforeSpawn = 60;
+					bLastIA = true;
 				}else
 				{
 					TimeBeforeSpawn = FMath::RandRange(1,5);
 				}
 			}else
 			{
+				if(NbIA == 1 && bLastIA)
+				{
+					TimeBeforeSpawn = FMath::RandRange(1,5);
+					bLastIA = false;
+				}
 				TimeBeforeSpawn -= DeltaTime;
 			}
 		}
