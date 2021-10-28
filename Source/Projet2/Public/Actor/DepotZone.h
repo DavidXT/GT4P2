@@ -6,8 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/BoxComponent.h"
 #include "Item.h"
-#include "MyGameState.h"
-#include "MyGameInstance.h"
+#include "GameMode/MyGameInstance.h"
 #include "DepotZone.generated.h"
 
 UCLASS()

@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Spawner.h"
-#include "AICharacter.h"
+#include "Actor/Spawner.h"
+#include "IA/AICharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Projet2/Item.h"
+#include "Actor/Item.h"
 
 // Sets default values
 ASpawner::ASpawner()
