@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyBTTDropItem.h"
-#include "MyAIController1.h"
+#include "BehaviorTreeTask/MyBTTDropItem.h"
+#include "IA/MyAIController1.h"
 
 EBTNodeResult::Type UMyBTTDropItem::ExecuteTask(UBehaviorTreeComponent & OwnerComp, uint8 * NodeMemory)
 {

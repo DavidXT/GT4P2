@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/BTTaskNode.h"
-#include "MyAIController1.h"
-#include "Spawner.h"
+#include "IA/MyAIController1.h"
+#include "Actor/Spawner.h"
 #include "MyBTTDestroyActor.generated.h"
 
 /**

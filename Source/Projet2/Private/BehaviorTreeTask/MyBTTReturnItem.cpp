@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyBTTReturnItem.h"
-#include "MyAIController1.h"
+#include "BehaviorTreeTask/MyBTTReturnItem.h"
+#include "IA/MyAIController1.h"
 
 EBTNodeResult::Type UMyBTTReturnItem::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
