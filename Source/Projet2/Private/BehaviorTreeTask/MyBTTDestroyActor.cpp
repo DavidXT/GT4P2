@@ -13,12 +13,15 @@ EBTNodeResult::Type UMyBTTDestroyActor::ExecuteTask(UBehaviorTreeComponent & Own
 
 	if(AICon)
 	{
-		if(AICon->AIChar)
+		if(AICon->AIChar != nullptr)
 		{
 		  static_cast<ASpawner*>(AICon->AIChar->Spawn)->NbIA--;
 			if(AICon->AIChar->bHolding)
 			{
-				AICon->AIChar->CurrentItem->Destroy();
+				if(AICon->AIChar->CurrentItem != nullptr)
+				{
+					AICon->AIChar->CurrentItem->Destroy();
+				}
 			}
 			AICon->AIChar->Destroy();
 			return EBTNodeResult::Succeeded;
