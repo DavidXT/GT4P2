@@ -12,10 +12,7 @@
 #include "GameMode/MyGameState.h"
 #include "IA/AICharacter.h"
 #include "Kismet/GameplayStatics.h"
-//#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
-
-//////////////////////////////////////////////////////////////////////////
 // AProjet2Character
 
 AProjet2Character::AProjet2Character()
@@ -53,18 +50,12 @@ AProjet2Character::AProjet2Character()
 	FP_FistLocation = CreateDefaultSubobject<USceneComponent>(TEXT("FistLocation"));
 	FP_FistLocation->SetupAttachment(GetCapsuleComponent());
 
-	MeshPersoFemale = CreateDefaultSubobject<USkeletalMesh>(TEXT("MeshFemale"));
-	MeshPersoGoblin = CreateDefaultSubobject<USkeletalMesh>(TEXT("MeshMale"));
-
 	bIsHoldingItem = false;
 }
 
-//////////////////////////////////////////////////////////////////////////
 // Input
-
 void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
-	
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
@@ -83,7 +74,6 @@ void AProjet2Character::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
-	
 }
 
 void AProjet2Character::BeginPlay()
@@ -97,8 +87,8 @@ void AProjet2Character::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AAct
 {
 	if(OtherActor->IsA(AAICharacter::StaticClass()))
 	{
-		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
-		if (MyGameState != NULL) {
+		AMyGameState* const MyGameState = GetWorld() != nullptr ? GetWorld()->GetGameState<AMyGameState>() : nullptr;
+		if (MyGameState != nullptr) {
 			MyGameState->Lose();
 		}
 	}
@@ -115,7 +105,6 @@ void AProjet2Character::PickItem()
 	if(CurrentItem != nullptr)
 	{
 		CurrentItem->PickItem(this);
-		bIsHoldingItem = true;
 	}
 }
 
@@ -137,14 +126,12 @@ void AProjet2Character::MoveForward(float Value)
 		{
 			Value = Value/(CurrentItem->FoodValue*2);
 		}
-		
 	}
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
-
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
@@ -157,7 +144,7 @@ void AProjet2Character::MoveRight(float Value)
 	{
 		Value = Value/2;
 	}
-	if ( (Controller != nullptr) && (Value != 0.0f) )
+	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -199,16 +186,4 @@ void AProjet2Character::Pause()
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
 	MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 	MyGameInstance->ClickResume();
-}
-
-void AProjet2Character::TwoPerso()
-{
-	GetMesh()->SetSkeletalMesh(MeshPersoGoblin);
-	GetMesh()->SetAnimInstanceClass(AnimPersoGoblin);
-}
-
-void AProjet2Character::ThirdPerso()
-{
-	GetMesh()->SetSkeletalMesh(MeshPersoFemale);
-	GetMesh()->SetAnimInstanceClass(AnimPersoFemale);
 }

@@ -42,12 +42,6 @@ class AProjet2Character : public ACharacter
 
 public:
 	AProjet2Character();
-
-
-	UFUNCTION()
-	void TwoPerso();
-	UFUNCTION()
-	void ThirdPerso();
 	
 	UPROPERTY(EditAnywhere)
 	USceneComponent* FP_FistLocation;
@@ -68,19 +62,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
-
-	UPROPERTY(EditAnywhere)
-	class USkeletalMesh* MeshPersoFemale;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Mesh)
-	class UClass* AnimPersoFemale;
-
-	UPROPERTY(EditAnywhere)
-	class USkeletalMesh* MeshPersoGoblin;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Mesh)
-	class UClass* AnimPersoGoblin;
-	
 	
 protected:
 
