@@ -134,7 +134,11 @@ void AProjet2Character::MoveForward(float Value)
 {
 	if(bIsHoldingItem)
 	{
-		Value = Value/2;
+		if(CurrentItem != nullptr)
+		{
+			Value = Value/(CurrentItem->FoodValue*2);
+		}
+		
 	}
 	if ((Controller != nullptr) && (Value != 0.0f))
 	{

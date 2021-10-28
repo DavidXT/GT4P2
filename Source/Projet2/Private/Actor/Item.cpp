@@ -34,7 +34,7 @@ void AItem::BeginPlay()
 	Collider->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnBeginOverlap);
 	Collider->OnComponentEndOverlap.AddDynamic(this, &AItem::OnEndOverlap);
 	int randValue = FMath::RandRange(0,10);
-	if(randValue <= 1)
+	if(randValue <= 3)
 	{
 		FoodValue = 2;
 		Mesh->SetRelativeScale3D(FVector(0.5f,0.5f,0.5f));

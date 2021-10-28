@@ -78,7 +78,7 @@ void ASpawner::SpawnIA()
 				static_cast<AItem*>(Item)->PickItem(IaActor);
 				if(IaActor->IsA(AAICharacter::StaticClass()))
 				{
-					static_cast<AAICharacter*>(IaActor)->GetCharacterMovement()->MaxWalkSpeed = 300;
+					static_cast<AAICharacter*>(IaActor)->GetCharacterMovement()->MaxWalkSpeed = MaxSpeed/2;
 					static_cast<AAICharacter*>(IaActor)->CurrentItem = static_cast<AItem*>(Item);
 					static_cast<AAICharacter*>(IaActor)->Spawn = this;
 					static_cast<AAICharacter*>(IaActor)->bHolding = true;
@@ -87,7 +87,7 @@ void ASpawner::SpawnIA()
 		}else{
 			if(IaActor->IsA(AAICharacter::StaticClass()))
 			{
-				static_cast<AAICharacter*>(IaActor)->GetCharacterMovement()->MaxWalkSpeed = 600;
+				static_cast<AAICharacter*>(IaActor)->GetCharacterMovement()->MaxWalkSpeed = MaxSpeed;
 				static_cast<AAICharacter*>(IaActor)->Spawn = this;
 				static_cast<AAICharacter*>(IaActor)->bHolding = false;
 			}
