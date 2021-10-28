@@ -27,8 +27,6 @@ UMyGameInstance::UMyGameInstance(const FObjectInitializer& ObjectInitializer) {
 	if (!ensure (PauseGame.Class != nullptr)) return;
 		
 	MPause = PauseGame.Class;
-
-	
 }
 
 void UMyGameInstance::Init() {

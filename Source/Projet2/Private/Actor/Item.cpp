@@ -33,8 +33,8 @@ void AItem::BeginPlay()
 	Super::BeginPlay();
 	Collider->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnBeginOverlap);
 	Collider->OnComponentEndOverlap.AddDynamic(this, &AItem::OnEndOverlap);
-	int randValue = FMath::RandRange(0,10);
-	if(randValue <= 3)
+	const int RandValue = FMath::RandRange(0,10);
+	if(RandValue <= 3)
 	{
 		FoodValue = 2;
 		Mesh->SetRelativeScale3D(FVector(0.5f,0.5f,0.5f));
@@ -77,11 +77,17 @@ void AItem::PickItem(AActor* Holder)
 	Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	if(Holder->IsA(AProjet2Character::StaticClass()))
 	{
-		AttachToComponent(static_cast<AProjet2Character*>(Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		AProjet2Character* ItemHolder = static_cast<AProjet2Character*>(Holder);
+		AttachToComponent(ItemHolder->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		ItemHolder->CurrentItem = this;
+		ItemHolder->bIsHoldingItem = true;
 	}
 	if(Holder->IsA(AAICharacter::StaticClass()))
 	{
-		AttachToComponent(static_cast<AAICharacter*>(Holder)->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		AAICharacter* ItemHolder = static_cast<AAICharacter*>(Holder);
+		AttachToComponent(ItemHolder->FP_FistLocation,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		ItemHolder->CurrentItem = this;
+		ItemHolder->bHolding = true;
 	}
 }
 

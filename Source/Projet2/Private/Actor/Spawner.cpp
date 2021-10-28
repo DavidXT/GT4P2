@@ -19,7 +19,7 @@ ASpawner::ASpawner()
 void ASpawner::BeginPlay()
 {
 	Super::BeginPlay();
-	PGameMode = GetWorld()->GetAuthGameMode<AProjet2GameMode>();
+	MyGameState = GetWorld() != nullptr ? GetWorld()->GetGameState<AMyGameState>() : nullptr;
 }
 
 // Called every frame
@@ -64,43 +64,46 @@ void ASpawner::Tick(float DeltaTime)
 
 void ASpawner::SpawnIA()
 {
-	if (AISpawn == NULL)
+	if (AISpawn == nullptr)
 	{
 		return;
 	}
-	if (Food == NULL)
+	if (Food == nullptr)
 	{
 		return;
 	}
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	AActor* IaActor = GetWorld()->SpawnActor<AActor>(AISpawn, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
-	AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
 	if(MyGameState)
 	{
 		if(MyGameState->CheckAvailability())
 		{
+			//AddFood to player if number of food is not enough
 			AActor* Item = GetWorld()->SpawnActor<AActor>(Food, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
 			MyGameState->NbFoodInRoom++;
-			if(Item->IsA(AItem::StaticClass()))
+			if(Item != nullptr && Item->IsA(AItem::StaticClass()))
 			{
-				static_cast<AItem*>(Item)->PickItem(IaActor);
-				if(IaActor->IsA(AAICharacter::StaticClass()))
+				AItem* SpawnedItem = static_cast<AItem*>(Item);
+				if(IaActor != nullptr && IaActor->IsA(AAICharacter::StaticClass()))
 				{
-					static_cast<AAICharacter*>(IaActor)->GetCharacterMovement()->MaxWalkSpeed = MaxSpeed/2;
-					static_cast<AAICharacter*>(IaActor)->CurrentItem = static_cast<AItem*>(Item);
-					static_cast<AAICharacter*>(IaActor)->Spawn = this;
-					static_cast<AAICharacter*>(IaActor)->bHolding = true;
+					AAICharacter* SpawnedActor = static_cast<AAICharacter*>(IaActor);
+					SpawnedItem->PickItem(IaActor);
+					SpawnedActor->GetCharacterMovement()->MaxWalkSpeed = MaxSpeed/2;
+					SpawnedActor->Spawn = this;
 				}
 			}
 		}else{
-			if(IaActor->IsA(AAICharacter::StaticClass()))
+			//Don't had food to player if enough food
+			if(IaActor != nullptr && IaActor->IsA(AAICharacter::StaticClass()))
 			{
-				static_cast<AAICharacter*>(IaActor)->GetCharacterMovement()->MaxWalkSpeed = MaxSpeed;
-				static_cast<AAICharacter*>(IaActor)->Spawn = this;
-				static_cast<AAICharacter*>(IaActor)->bHolding = false;
+				AAICharacter* SpawnedActor = static_cast<AAICharacter*>(IaActor);
+				SpawnedActor->GetCharacterMovement()->MaxWalkSpeed = MaxSpeed;
+				SpawnedActor->Spawn = this;
+				SpawnedActor->bHolding = false;
 			}
 		}
+
 	}
 }
 

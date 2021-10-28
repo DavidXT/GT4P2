@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameMode/MyGameState.h"
 #include "GameMode/Projet2GameMode.h"
 #include "Spawner.generated.h"
 
@@ -31,7 +32,7 @@ public:
 	
 	bool bLastIA;
 	
-	AProjet2GameMode* PGameMode;
+	AMyGameState* MyGameState;
 
 	UPROPERTY(EditAnywhere)
 	class UClass* AISpawn;

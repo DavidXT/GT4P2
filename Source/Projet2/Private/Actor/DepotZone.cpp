@@ -12,7 +12,6 @@ ADepotZone::ADepotZone()
 	PrimaryActorTick.bCanEverTick = true;
 	Collider = CreateDefaultSubobject<UBoxComponent>(FName("Collider"));
 	Collider->SetupAttachment(RootComponent);
-
 }
 
 // Called when the game starts or when spawned
@@ -28,10 +27,9 @@ void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 {
 	if(OtherActor->IsA(AItem::StaticClass()))
 	{
-		//GEngine->AddOnScreenDebugMessage(-1,5.0f,FColor::Red,FString("Overlap Burger!"));
-		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
-		if (MyGameState != NULL) {
-			MyGameState->AddScore(((AItem*)OtherActor)->FoodValue);
+		AMyGameState* const MyGameState = GetWorld() != nullptr ? GetWorld()->GetGameState<AMyGameState>() : nullptr;
+		if (MyGameState != nullptr) {
+			MyGameState->AddScore(static_cast<AItem*>(OtherActor)->FoodValue);
 		}
 		MyGameState->NbFoodInRoom--;
 		OtherActor->Destroy();
@@ -42,6 +40,5 @@ void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 void ADepotZone::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
