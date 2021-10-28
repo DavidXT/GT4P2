@@ -8,6 +8,7 @@ bool UMyPauseWidget::Initialize()
 {
 	Super::Initialize();
 	ResumeButton->OnClicked.AddDynamic(this, &UMyPauseWidget::OnClickResume);
+	ReturnMenuButton->OnClicked.AddDynamic(this, &UMyPauseWidget::OnClickReturnMenu);
 	return true;
 }
 
@@ -22,4 +23,9 @@ void UMyPauseWidget::OnClickResume()
 	PlayerController->bShowMouseCursor = false;
 	
 	this->RemoveFromViewport();
+}
+
+void UMyPauseWidget::OnClickReturnMenu()
+{
+	UGameplayStatics::OpenLevel(this, FName("MainMenu"));
 }

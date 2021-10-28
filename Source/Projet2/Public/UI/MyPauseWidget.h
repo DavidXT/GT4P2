@@ -21,7 +21,13 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	class UButton* ResumeButton;
 	
+	UPROPERTY(meta = (BindWidget))
+	class UButton* ReturnMenuButton;
+	
 	UFUNCTION()
 	void OnClickResume();
+
+	UFUNCTION()
+    void OnClickReturnMenu();
 	
 };
