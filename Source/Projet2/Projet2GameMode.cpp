@@ -20,10 +20,10 @@ void AProjet2GameMode::BeginPlay()
 {
 	Super::BeginPlay();
 	MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
-	if (GetWorld()->GetMapName() == "UEDPIE_0_MainMenu") {
+	if (GetWorld()->GetMapName() == "UEDPIE_0_MainMenu" || GetWorld()->GetMapName() == "MainMenu" ) {
 		MyGameInstance->ShowWidgetMainMenu();
 	}
-	if (GetWorld()->GetMapName() == "UEDPIE_0_Game") {
+	if (GetWorld()->GetMapName() == "UEDPIE_0_Game" || GetWorld()->GetMapName() == "Game" ) {
 		MyGameInstance->ShowWidget();
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATargetActor::StaticClass(), TargetActors);
 		if (Food == nullptr)

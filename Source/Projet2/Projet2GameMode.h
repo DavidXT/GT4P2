@@ -21,6 +21,12 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class UClass* Food;
+	
+	UPROPERTY(EditAnywhere)
+    class UWorld* MainMenu;
+    	
+    UPROPERTY(EditAnywhere)
+    class UWorld* MainGame;
 
 	UMyGameInstance* MyGameInstance;
 	

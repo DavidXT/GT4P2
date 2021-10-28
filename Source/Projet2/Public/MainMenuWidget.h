@@ -21,7 +21,7 @@ public:
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* StartButton;
-
+	
 	UFUNCTION()
 	void OnClickStart();
 
