@@ -77,7 +77,7 @@ void UMyGameInstance::ShowWidgetMainMenu()
 	UMainMenuWidget* MyHUD = CreateWidget<UMainMenuWidget>(this, MainMenuScreen);
 	MainMenuWidget = MyHUD;
 	MainMenuWidget->AddToViewport();
-
+	
 	APlayerController* PlayerController = GetFirstLocalPlayerController();
 	FInputModeUIOnly InputModeData;
 	InputModeData.SetWidgetToFocus(MainMenuWidget->TakeWidget());
@@ -95,7 +95,7 @@ void UMyGameInstance::ClickResume()
 	PauseWidget = MyHUD;
 	PauseWidget->AddToViewport();
 
-	APlayerController* PlayerController = GetFirstLocalPlayerController();;
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
 	FInputModeUIOnly InputModeData;
 	InputModeData.SetWidgetToFocus(PauseWidget->TakeWidget());
 	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);

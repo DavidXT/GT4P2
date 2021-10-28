@@ -64,6 +64,7 @@ public:
 	void Pick();
 	void Drop();
 	void ReturnItem();
+	void RandomPlay();
 	
 	AActor* Spawn;
 	bool bItemOnTarget = false;

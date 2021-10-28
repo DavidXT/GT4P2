@@ -38,36 +38,7 @@ void AAICharacter::BeginPlay()
 	{
 		PawnSensingComp->OnSeePawn.AddDynamic(this, &AAICharacter::OnSeePlayer);
 	}
-	const int RandMesh = FMath::RandRange(0,1);
-	switch (RandMesh)
-	{
-	case 0:
-		GetMesh()->SetSkeletalMesh(MeshMale);
-		GetMesh()->SetAnimInstanceClass(AnimMale);
-		break;
-	case 1:
-		GetMesh()->SetSkeletalMesh(MeshFemale);
-		GetMesh()->SetAnimInstanceClass(AnimFemale);
-		break;
-	default:
-		break;
-	}
-	
-	const int RandSkin = FMath::RandRange(0,2);
-	switch (RandSkin)
-	{
-	case 0:
-		GetMesh()->SetMaterial(0, Material1);
-		break;
-	case 1:
-		GetMesh()->SetMaterial(0, Material2);
-		break;
-	case 2:
-		GetMesh()->SetMaterial(0, Material3);
-		break;
-	default:
-		break;
-	}
+	RandomPlay();
 }
 
 // Called every frame
@@ -149,5 +120,39 @@ void AAICharacter::ReturnItem()
 		BlackboardComp->SetValueAsObject("LocationToGo", Spawn);
 		BlackboardComp->SetValueAsBool("bCanPick", false);
 		Destroy();
+	}
+}
+
+void AAICharacter::RandomPlay()
+{
+	const int RandMesh = FMath::RandRange(0, 1);
+	switch (RandMesh)
+	{
+	case 0:
+		GetMesh()->SetSkeletalMesh(MeshMale);
+		GetMesh()->SetAnimInstanceClass(AnimMale);
+		break;
+	case 1:
+		GetMesh()->SetSkeletalMesh(MeshFemale);
+		GetMesh()->SetAnimInstanceClass(AnimFemale);
+		break;
+	default:
+		break;
+	}
+
+	const int RandSkin = FMath::RandRange(0, 2);
+	switch (RandSkin)
+	{
+	case 0:
+		GetMesh()->SetMaterial(0, Material1);
+		break;
+	case 1:
+		GetMesh()->SetMaterial(0, Material2);
+		break;
+	case 2:
+		GetMesh()->SetMaterial(0, Material3);
+		break;
+	default:
+		break;
 	}
 }
