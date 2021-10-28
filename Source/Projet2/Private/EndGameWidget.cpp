@@ -8,6 +8,7 @@ bool UEndGameWidget::Initialize()
 {
 	Super::Initialize();
 	RestartButton->OnClicked.AddDynamic(this, &UEndGameWidget::OnClickRestart);
+	QuitButton->OnClicked.AddDynamic(this, &UEndGameWidget::OnClickQuit);
 	return true;
 }
 
@@ -28,6 +29,11 @@ void UEndGameWidget::ShowEndScreen(bool GameState)
 void UEndGameWidget::OnClickRestart()
 {
 	UGameplayStatics::OpenLevel(this, FName(*GetWorld()->GetName()), false);
+}
+
+void UEndGameWidget::OnClickQuit()
+{
+	UKismetSystemLibrary::QuitGame(this, nullptr, EQuitPreference::Quit, false);
 }
 
 

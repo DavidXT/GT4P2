@@ -26,9 +26,15 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	class UButton* RestartButton;
 
+	UPROPERTY(meta = (BindWidget))
+	class UButton* QuitButton;
+
 	UFUNCTION()
 	void ShowEndScreen(bool GameState);
 	
 	UFUNCTION()
 	void OnClickRestart();
+
+	UFUNCTION()
+	void OnClickQuit();
 };
