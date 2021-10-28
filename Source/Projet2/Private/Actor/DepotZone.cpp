@@ -33,6 +33,7 @@ void ADepotZone::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 		if (MyGameState != NULL) {
 			MyGameState->AddScore(((AItem*)OtherActor)->FoodValue);
 		}
+		MyGameState->NbFoodInRoom--;
 		OtherActor->Destroy();
 	}
 }

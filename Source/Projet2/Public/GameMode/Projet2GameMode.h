@@ -27,8 +27,6 @@ public:
 	UPROPERTY(EditAnywhere)
 	bool bIsPlaying;
 
-	UFUNCTION()
-	bool CheckAvailableSpot();
 
 protected:
 	virtual void BeginPlay() override;

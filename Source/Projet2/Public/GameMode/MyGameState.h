@@ -28,7 +28,13 @@ public :
 	bool bIsLose = false;
 
 	UPROPERTY(VisibleAnywhere)
+	int NbFoodInRoom;
+
+	UPROPERTY(VisibleAnywhere)
 	bool bGameStart = false;
+
+	UFUNCTION()
+	bool CheckAvailability();
 	
 	void AddScore(float);
 

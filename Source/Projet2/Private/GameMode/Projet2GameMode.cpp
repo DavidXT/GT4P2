@@ -3,6 +3,7 @@
 #include "GameMode/Projet2GameMode.h"
 
 #include "Character/Projet2Character.h"
+#include "GameMode/MyGameState.h"
 
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
@@ -36,22 +37,11 @@ void AProjet2GameMode::BeginPlay()
 		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 		GetWorld()->SpawnActor<AActor>(Food, TargetActors[RandInt]->GetActorLocation(), TargetActors[RandInt]->GetActorRotation(), SpawnParams); //Cast blueprint
 		static_cast<ATargetActor*>(TargetActors[RandInt])->bHasItem = true;
-	}
-}
-
-bool AProjet2GameMode::CheckAvailableSpot()
-{
-	for (int i = 0; i < TargetActors.Num(); i++)
-	{
-		if(TargetActors[i]->IsA(ATargetActor::StaticClass()))
+		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
+		if(MyGameState)
 		{
-			if(static_cast<ATargetActor*>(TargetActors[i])->bHasItem == false)
-			{
-				return true;
-			}
+			MyGameState->NbFoodInRoom++;
 		}
 	}
-	return false;
 }
-
 

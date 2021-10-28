@@ -5,6 +5,7 @@
 #include "IA/AICharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Actor/Item.h"
+#include "GameMode/MyGameState.h"
 
 // Sets default values
 ASpawner::ASpawner()
@@ -68,11 +69,13 @@ void ASpawner::SpawnIA()
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	AActor* IaActor = GetWorld()->SpawnActor<AActor>(AISpawn, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
-	if(PGameMode)
+	AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
+	if(MyGameState)
 	{
-		if(PGameMode->CheckAvailableSpot())
+		if(MyGameState->CheckAvailability())
 		{
 			AActor* Item = GetWorld()->SpawnActor<AActor>(Food, GetActorLocation(), GetActorRotation(), SpawnParams); //Cast blueprint
+			MyGameState->NbFoodInRoom++;
 			if(Item->IsA(AItem::StaticClass()))
 			{
 				static_cast<AItem*>(Item)->PickItem(IaActor);

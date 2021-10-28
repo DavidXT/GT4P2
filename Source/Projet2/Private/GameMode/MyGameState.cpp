@@ -30,3 +30,15 @@ void AMyGameState::Lose()
 		MyGameInstance->ShowWidgetEndGame(false);
 	}
 }
+
+bool AMyGameState::CheckAvailability()
+{
+	if(NbFoodInRoom < 5)
+	{
+		return true;
+	}else
+	{
+		return false;
+	}
+
+}
