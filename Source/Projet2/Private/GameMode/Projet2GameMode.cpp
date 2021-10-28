@@ -27,21 +27,26 @@ void AProjet2GameMode::BeginPlay()
 	}
 	if (GetWorld()->GetMapName() == "UEDPIE_0_Game" || GetWorld()->GetMapName() == "Game" ) {
 		MyGameInstance->ShowWidget();
-		UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATargetActor::StaticClass(), TargetActors);
-		if (Food == nullptr)
-		{
-			return;
-		}
-		const int RandInt = FMath::RandRange(0, TargetActors.Num() - 1);
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-		GetWorld()->SpawnActor<AActor>(Food, TargetActors[RandInt]->GetActorLocation(), TargetActors[RandInt]->GetActorRotation(), SpawnParams); //Cast blueprint
-		static_cast<ATargetActor*>(TargetActors[RandInt])->bHasItem = true;
-		AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
-		if(MyGameState)
-		{
-			MyGameState->NbFoodInRoom++;
-		}
+		OnStart();
+	}
+}
+
+void AProjet2GameMode::OnStart()
+{
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ATargetActor::StaticClass(), TargetActors);
+	if (Food == nullptr)
+	{
+		return;
+	}
+	const int RandInt = FMath::RandRange(0, TargetActors.Num() - 1);
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	GetWorld()->SpawnActor<AActor>(Food, TargetActors[RandInt]->GetActorLocation(), TargetActors[RandInt]->GetActorRotation(), SpawnParams); //Cast blueprint
+	static_cast<ATargetActor*>(TargetActors[RandInt])->bHasItem = true;
+	AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
+	if (MyGameState)
+	{
+		MyGameState->NbFoodInRoom++;
 	}
 }
 

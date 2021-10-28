@@ -23,6 +23,9 @@ public:
 	virtual void Init();
 
 	UFUNCTION(BlueprintCallable)
+	void ShowCursor();
+
+	UFUNCTION(BlueprintCallable)
 	void ShowWidget();
 	
 	UFUNCTION(BlueprintCallable)

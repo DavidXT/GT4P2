@@ -90,7 +90,6 @@ void AProjet2Character::BeginPlay()
 {
 	Super::BeginPlay();
 	GetCapsuleComponent()->OnComponentBeginOverlap.AddDynamic(this,&AProjet2Character::OnBeginOverlap);
-	MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 }
 
 void AProjet2Character::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
@@ -198,6 +197,7 @@ void AProjet2Character::ZoomOut()
 void AProjet2Character::Pause()
 {
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
+	MyGameInstance = Cast<UMyGameInstance>(GetWorld()->GetGameInstance());
 	MyGameInstance->ClickResume();
 }
 
