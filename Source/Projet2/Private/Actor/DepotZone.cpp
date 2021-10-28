@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "DepotZone.h"
+
+#include "Actor/DepotZone.h"
+#include "GameMode/MyGameState.h"
 
 // Sets default values
 ADepotZone::ADepotZone()

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Projet2/Projet2GameMode.h"
+#include "GameMode/Projet2GameMode.h"
 #include "Spawner.generated.h"
 
 UCLASS()
