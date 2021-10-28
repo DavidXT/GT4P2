@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Projet2/MyGameState.h"
+#include "GameMode/MyGameState.h"
 #include "Runtime/Engine/Classes/Animation/AnimInstance.h"
 #include "AnimInstance1.generated.h"
 /**

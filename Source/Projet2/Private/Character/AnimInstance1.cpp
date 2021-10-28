@@ -1,10 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "AnimInstance1.h"
-
-#include "AICharacter.h"
-#include "Projet2/Projet2Character.h"
+#include "Character/AnimInstance1.h"
+#include "Character/Projet2Character.h"
+#include "IA/AICharacter.h"
 
 
 UAnimInstance1::UAnimInstance1()

@@ -4,9 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Item.h"
-#include "MyUserWidget.h"
-#include "MyGameInstance.h"
+#include "Actor/Item.h"
+#include "GameMode/MyGameInstance.h"
 #include "Components/SceneComponent.h"
 #include "Projet2Character.generated.h"
 

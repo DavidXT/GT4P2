@@ -1,15 +1,16 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Projet2Character.h"
+#include "Character/Projet2Character.h"
 
-#include "AICharacter.h"
-#include "MyGameState.h"
+
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameMode/MyGameState.h"
+#include "IA/AICharacter.h"
 #include "Kismet/GameplayStatics.h"
 //#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
