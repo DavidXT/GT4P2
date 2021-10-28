@@ -9,7 +9,6 @@ bool UMainMenuWidget::Initialize()
 {
 	Super::Initialize();
 	StartButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnClickStart);
-	OptionsButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnClickOptions);
 	QuitButton->OnClicked.AddDynamic(this, &UMainMenuWidget::OnClickQuit);
 	return true;
 }
@@ -17,11 +16,6 @@ bool UMainMenuWidget::Initialize()
 void UMainMenuWidget::OnClickStart()
 {
 	UGameplayStatics::OpenLevel(this, FName("Game"));
-}
-
-void UMainMenuWidget::OnClickOptions()
-{
-
 }
 
 void UMainMenuWidget::OnClickQuit()

@@ -26,12 +26,6 @@ public:
 	void OnClickStart();
 
 	UPROPERTY(meta = (BindWidget))
-	class UButton* OptionsButton;
-
-	UFUNCTION()
-	void OnClickOptions();
-
-	UPROPERTY(meta = (BindWidget))
 	class UButton* QuitButton;
 
 	UFUNCTION()
