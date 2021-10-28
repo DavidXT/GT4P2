@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyCharacterChoiceWidget.h"
-#include <Projet2/Projet2Character.h>
+#include <Projet2\Public\UI\MyCharacterChoiceWidget.h>
+#include <Projet2\Public\Character\Projet2Character.h>
 //#include "Kismet/GameplayStatics.h"
 
 bool UMyCharacterChoiceWidget::Initialize()
