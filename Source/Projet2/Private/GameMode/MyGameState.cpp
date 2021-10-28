@@ -40,5 +40,4 @@ bool AMyGameState::CheckAvailability()
 	{
 		return false;
 	}
-
 }

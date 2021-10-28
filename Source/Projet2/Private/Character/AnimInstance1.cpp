@@ -10,7 +10,7 @@ UAnimInstance1::UAnimInstance1()
 {
 	Speed = 0.0;
 	bIsHoldingItem = false;
-	MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
+	MyGameState = GetWorld() != nullptr ? GetWorld()->GetGameState<AMyGameState>() : nullptr;
 }
 
 
@@ -33,7 +33,7 @@ void UAnimInstance1::NativeUpdateAnimation(float DeltaSeconds)
 	{
 		bIsHoldingItem = static_cast<AAICharacter*>(OwningActor)->bHolding;
 	}
-	if (MyGameState != NULL)
+	if (MyGameState != nullptr)
 	{
 		bIsWin = MyGameState->bIsWin;
 		bIsLose = MyGameState->bIsLose;

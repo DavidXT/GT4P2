@@ -19,10 +19,13 @@ AAICharacter::AAICharacter()
 	//Create socket to getItem
 	FP_FistLocation = CreateDefaultSubobject<USceneComponent>(TEXT("FistLocation"));
 	FP_FistLocation->SetupAttachment(GetCapsuleComponent());
+
+	//Material to update for skin
 	Material1 = CreateDefaultSubobject<UMaterial>(TEXT("Material1"));
 	Material2 = CreateDefaultSubobject<UMaterial>(TEXT("Material2"));
 	Material3 = CreateDefaultSubobject<UMaterial>(TEXT("Material3"));
 
+	//Mesh to update for skin
 	MeshFemale = CreateDefaultSubobject<USkeletalMesh>(TEXT("MeshFemale"));
 	MeshMale = CreateDefaultSubobject<USkeletalMesh>(TEXT("MeshMale"));
 	
@@ -32,8 +35,8 @@ AAICharacter::AAICharacter()
 void AAICharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
 	//Register the function that is going to fire when the character sees a Pawn
+	AIController = Cast<AMyAIController1>(GetController());
 	if (PawnSensingComp)
 	{
 		PawnSensingComp->OnSeePawn.AddDynamic(this, &AAICharacter::OnSeePlayer);
@@ -46,8 +49,6 @@ void AAICharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	AMyAIController1* AIController = Cast<AMyAIController1>(GetController());
-	
 	if(bAIVisible == true)
 	{
 		if((GetWorld()->TimeSeconds - LastSeenTime) > TimeOut)
@@ -55,7 +56,6 @@ void AAICharacter::Tick(float DeltaTime)
 			AIController->SetNotSeenTarget();
 		}
 	}
-
 }
 
 // Called to bind functionality to input
@@ -67,7 +67,6 @@ void AAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 void AAICharacter::OnSeePlayer(APawn* InPawn)
 {
-	AMyAIController1* AIController = Cast<AMyAIController1>(GetController());
 	//Set the seen target on the blackboard
 	if (AIController)
 	{
@@ -105,7 +104,6 @@ void AAICharacter::Drop()
 
 void AAICharacter::ReturnItem()
 {
-	AMyAIController1* AIController = Cast<AMyAIController1>(GetController());
 	UBlackboardComponent* BlackboardComp = AIController->GetBlackboardComp();
 
 	float Distance = GetDistanceTo(CurrentItem);

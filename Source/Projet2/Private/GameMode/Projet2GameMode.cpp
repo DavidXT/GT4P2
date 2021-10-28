@@ -43,7 +43,7 @@ void AProjet2GameMode::OnStart()
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	GetWorld()->SpawnActor<AActor>(Food, TargetActors[RandInt]->GetActorLocation(), TargetActors[RandInt]->GetActorRotation(), SpawnParams); //Cast blueprint
 	static_cast<ATargetActor*>(TargetActors[RandInt])->bHasItem = true;
-	AMyGameState* const MyGameState = GetWorld() != NULL ? GetWorld()->GetGameState<AMyGameState>() : NULL;
+	AMyGameState* const MyGameState = GetWorld() != nullptr ? GetWorld()->GetGameState<AMyGameState>() : nullptr;
 	if (MyGameState)
 	{
 		MyGameState->NbFoodInRoom++;

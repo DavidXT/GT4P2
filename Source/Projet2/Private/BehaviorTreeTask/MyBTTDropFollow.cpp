@@ -15,13 +15,9 @@ EBTNodeResult::Type UMyBTTDropFollow::ExecuteTask(UBehaviorTreeComponent & Owner
 	{
 		if(AICon->AIChar)
 		{
-			if(AICon->CurrentPoint->IsA(ATargetActor::StaticClass()))
+			if(AICon->AIChar->bHolding)
 			{
-				if(((ATargetActor*)AICon->CurrentPoint)->bHasItem == false)
-				{
-					AICon->AIChar->Drop();
-					AICon->SetItemPosition(AICon->AIChar->CurrentItem->GetActorLocation());
-				}
+				AICon->AIChar->Drop();
 			}
 			return EBTNodeResult::Succeeded;
 		}
